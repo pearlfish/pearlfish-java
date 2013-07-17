@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="okeydoke">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/okeydoke/okeydoke-0.7.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
