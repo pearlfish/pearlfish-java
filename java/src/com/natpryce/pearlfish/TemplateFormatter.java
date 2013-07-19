@@ -2,11 +2,17 @@ package com.natpryce.pearlfish;
 
 import com.google.common.io.Resources;
 import com.natpryce.pearlfish.internal.StreamCopierThread;
+import com.samskivert.mustache.Mustache;
+import com.samskivert.mustache.Template;
 import org.rococoa.okeydoke.formatters.StringFormatter;
-import org.stringtemplate.v4.ST;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.google.common.io.Resources.getResource;
 
@@ -22,9 +28,8 @@ public class TemplateFormatter extends StringFormatter {
 
     @Override
     public String formatted(Object actual) {
-        ST st = loadTemplate();
-        st.add("results", actual);
-        return st.render();
+        Template template = loadTemplate();
+        return template.execute(actual);
     }
 
     @Override
@@ -36,11 +41,15 @@ public class TemplateFormatter extends StringFormatter {
         }
     }
 
-    private ST loadTemplate() {
+    private Template loadTemplate() {
         final String templateName = testName + ".md.template";
 
         try {
-            return new ST(Resources.toString(getResource(testClass, templateName), Charset.forName("UTF8")));
+            return Mustache.compiler()
+                    .escapeHTML(false)
+                    .compile(Resources.toString(
+                            getResource(testClass, templateName),
+                            Charset.forName("UTF8")));
         } catch (IOException e) {
             throw new IllegalArgumentException("cannot load template " + templateName, e);
         }
