@@ -21,11 +21,6 @@ public class TemplateFormatter extends StringFormatter {
     }
 
     @Override
-    public Object emptyThing() {
-        return "";
-    }
-
-    @Override
     public String formatted(Object actual) {
         ST st = loadTemplate();
         st.add("results", actual);
