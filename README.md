@@ -1,6 +1,8 @@
 Pearlfish
 =========
 
+![Pearlfish](pearlfish.png)
+
 Specification-by-Example crossed with Approval Testing
 
 
