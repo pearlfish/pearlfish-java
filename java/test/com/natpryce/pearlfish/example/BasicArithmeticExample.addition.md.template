@@ -5,6 +5,6 @@ Basic addition with 32-bit integers.
 
 | Scenario   | X            | Y            | X + Y      |
 |------------|-------------:|-------------:|-----------:|
-<results:{r|
-| <r.name>   | <r.input;separator=" | ">   | <r.output> |
-}>
+{{#results}}
+| {{name}}   | {{input.x}}  | {{input.y}}  | {{output}} |
+{{/results}}

@@ -20,13 +20,18 @@ public class BasicArithmeticExample {
     @Test
     public void addition() throws IOException {
         approvals.assertApproved(results(
-                addition("simple add", 1, 2),
-                addition("zero left", 0, 2),
-                addition("zero right", 1, 0),
-                addition("zero both", 0, 0)));
+                scenario("simple add", new Operands(1, 2), 3),
+                scenario("zero left", new Operands(0, 2), 2),
+                scenario("zero right", new Operands(1, 0), 1),
+                scenario("zero both", new Operands(0, 0), 0)));
     }
 
-    private Scenario<List<Integer>, Integer> addition(String what, int x, int y) {
-        return scenario(what, asList(x, y), x + y);
+    public static class Operands {
+        public int x, y;
+
+        public Operands(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
