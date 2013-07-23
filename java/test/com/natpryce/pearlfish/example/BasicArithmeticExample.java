@@ -31,7 +31,7 @@ public class BasicArithmeticExample {
                         scenario("both negative", new Operands(-4, -9), BigInteger.valueOf(-13))),
                 section("large",
                         scenario("large addition", new Operands(Integer.MAX_VALUE, Integer.MAX_VALUE), BigInteger.valueOf(Integer.MAX_VALUE).add(BigInteger.valueOf(Integer.MAX_VALUE))),
-                        scenario("large subtraction", new Operands(Integer.MIN_VALUE, Integer.MIN_VALUE), BigInteger.valueOf(Integer.MIN_VALUE).add(BigInteger.valueOf(Integer.MIN_VALUE))))));
+                        scenario("large negative numbers", new Operands(Integer.MIN_VALUE, Integer.MIN_VALUE), BigInteger.valueOf(Integer.MIN_VALUE).add(BigInteger.valueOf(Integer.MIN_VALUE))))));
     }
 
     public static class Operands {

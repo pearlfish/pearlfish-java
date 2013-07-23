@@ -24,7 +24,7 @@ Addition supports negative numbers.
 
 Addition can result in integers larger than 32-bits in size.
 
-| Scenario            | X             | Y             | X + Y        |
-|---------------------|--------------:|--------------:|-------------:|
-| large addition      | 2147483647    | 2147483647    | 4294967294   |
-| large subtraction   | \-2147483648  | \-2147483648  | \-4294967296 |
+| Scenario                 | X             | Y             | X + Y        |
+|--------------------------|--------------:|--------------:|-------------:|
+| large addition           | 2147483647    | 2147483647    | 4294967294   |
+| large negative numbers   | \-2147483648  | \-2147483648  | \-4294967296 |
