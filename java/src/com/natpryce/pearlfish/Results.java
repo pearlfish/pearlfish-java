@@ -1,10 +1,8 @@
 package com.natpryce.pearlfish;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Maps;
-
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
@@ -17,6 +15,7 @@ public class Results {
         return new Scenario<I,O>(named, input, output);
     }
 
+    @SuppressWarnings("unchecked")
     public static <I,O> Map<String,List<Scenario<I,O>>> results(Scenario<I,O> ... results) {
         return results(section("results", results));
     }

@@ -1,12 +1,13 @@
 package com.natpryce.pearlfish.junit;
 
-import com.natpryce.pearlfish.TemplateFormatter;
+import com.natpryce.pearlfish.formats.MarkdownFormatter;
 import org.rococoa.okeydoke.Approver;
 import org.rococoa.okeydoke.ApproverFactory;
 import org.rococoa.okeydoke.Reporters;
 import org.rococoa.okeydoke.Sources;
 import org.rococoa.okeydoke.junit.ApprovalsRule;
 
+import java.io.File;
 import java.nio.charset.Charset;
 
 public class Pearlfish {
@@ -15,8 +16,8 @@ public class Pearlfish {
             public Approver create(String testName, Class<?> testClass) {
                 return new Approver(
                         testName,
-                        Sources.in(srcRoot, testClass.getPackage()),
-                        new TemplateFormatter(testClass, testName, Charset.defaultCharset()),
+                        Sources.in(new File(srcRoot), testClass.getPackage()),
+                        new MarkdownFormatter(testClass, testName, Charset.defaultCharset()),
                         Reporters.reporter());
             }
         });
