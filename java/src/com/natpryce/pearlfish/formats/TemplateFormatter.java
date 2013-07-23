@@ -46,5 +46,5 @@ public abstract class TemplateFormatter extends StringFormatter {
         }
     }
 
-    protected abstract String fileExtension();
+    public abstract String fileExtension();
 }

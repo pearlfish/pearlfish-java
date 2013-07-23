@@ -12,7 +12,7 @@ public class MarkdownFormatter extends TemplateFormatter {
                 new MarkdownTableLayoutFilter());
     }
 
-    protected String fileExtension() {
+    public String fileExtension() {
         return ".md";
     }
 }
