@@ -50,7 +50,6 @@ public class MarkdownTableLayoutFilterTest {
         approvals.assertApproved(filter.filter(markdown));
     }
 
-
     private String md(String... lines) {
         return Joiner.on("\n").join(lines);
     }
