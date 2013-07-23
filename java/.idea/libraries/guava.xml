@@ -1,11 +1,13 @@
 <component name="libraryTable">
   <library name="guava">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/guava/guava-14.0.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs/guava" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/libs/guava/guava-14.0.1-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs/guava" />
     </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/libs/guava" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/guava" recursive="false" type="SOURCES" />
   </library>
 </component>
