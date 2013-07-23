@@ -11,8 +11,9 @@ import java.util.regex.Pattern;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class MarkdownTableLayoutFilter implements TextFilter {
-    private static final Pattern tableRowPattern = Pattern.compile("^\\|.*\\|\\s*$");
+    private static final Pattern tableRowPattern = Pattern.compile("^(?<!\\\\)\\|.*(?<!\\\\)\\|\\s*$");
     private static final Pattern tableDividerPattern = Pattern.compile(":-+|-+|-+:");
+    private static final Pattern columnDividerPattern = Pattern.compile("(?<!\\\\)\\|");
 
     @Override
     public String filter(String input) {
@@ -63,7 +64,7 @@ public class MarkdownTableLayoutFilter implements TextFilter {
 
         while ((line = lines.readLine()) != null) {
             if (isTableRowRow(line)) {
-                String[] parts = line.split("\\|");
+                String[] parts = columnDividerPattern.split(line);
                 rows.add(Arrays.asList(parts).subList(1, parts.length).toArray(new String[parts.length-1]));
             }
             else {
@@ -128,5 +129,4 @@ public class MarkdownTableLayoutFilter implements TextFilter {
         }
         return maxLength;
     }
-
 }

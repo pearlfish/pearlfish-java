@@ -41,6 +41,15 @@ public class MarkdownTableLayoutFilterTest {
         approvals.assertApproved(filter.filter(markdown));
     }
 
+    @Test
+    public void reformatsTablesWithEscapedPipes() throws IOException {
+        String markdown = md(
+                "| Column 1 | Column 2 | Column 3 |",
+                "| cell\\|A1\\| | cell\\|A2\\| | cell\\|A3\\| |");
+
+        approvals.assertApproved(filter.filter(markdown));
+    }
+
 
     private String md(String... lines) {
         return Joiner.on("\n").join(lines);

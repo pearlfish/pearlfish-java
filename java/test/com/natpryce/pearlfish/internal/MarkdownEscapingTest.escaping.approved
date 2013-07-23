@@ -1,0 +1,6 @@
+no escaping -> no escaping
+*asterisks* -> \*asterisks\*
+_underscores_ -> \_underscores\_
+|pipes| -> \|pipes\|
++pluses+ -> \+pluses\+
+-minuses- -> \-minuses\-
