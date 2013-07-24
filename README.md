@@ -9,7 +9,7 @@ Requirements
 
 Pearlfish requires:
 
- * Java 1.6 or above
+ * Java 1.7 or above
 
 Document publishing pipeline:
  * [Pandoc](http://johnmacfarlane.net/pandoc/index.html) 1.11.1 or above
