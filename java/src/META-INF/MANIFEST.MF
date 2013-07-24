@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: guava-14.0.1.jar jmustache-natpryce-1.9-SNAPSHOT.jar junit
+ -4.11.jar okeydoke-0.8.1.jar
+

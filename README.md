@@ -18,8 +18,10 @@ Document publishing pipeline:
  * Latex and pdfjam if you want to generate documentation in PDF
 
 
-There's no build file yet.  For now, build and run with IntelliJ.  IntelliJ project files are checked in to Git.
+Build
+-----
 
+Cd to the java/ directory and run [Ant](http://ant.apache.org).  JAR files will be created in the java/out/ directory.
 
 Documentation
 -------------

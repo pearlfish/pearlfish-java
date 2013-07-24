@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact name="pearlfish.jar">
+    <output-path>$PROJECT_DIR$/out/</output-path>
+    <root id="root">
+      <element id="archive" name="pearlfish.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="pearlfish" />
+      </element>
+      <element id="library" level="project" name="guava" />
+      <element id="library" level="project" name="jmustache" />
+      <element id="library" level="project" name="okeydoke" />
+    </root>
+  </artifact>
+</component>
