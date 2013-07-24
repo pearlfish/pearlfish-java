@@ -34,13 +34,4 @@ public class BasicArithmeticExample {
                         scenario("large addition", new Operands(Integer.MAX_VALUE, Integer.MAX_VALUE), BigInteger.valueOf(Integer.MAX_VALUE).add(BigInteger.valueOf(Integer.MAX_VALUE))),
                         scenario("large negative numbers", new Operands(Integer.MIN_VALUE, Integer.MIN_VALUE), BigInteger.valueOf(Integer.MIN_VALUE).add(BigInteger.valueOf(Integer.MIN_VALUE))))));
     }
-
-    public static class Operands {
-        public int x, y;
-
-        public Operands(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 }

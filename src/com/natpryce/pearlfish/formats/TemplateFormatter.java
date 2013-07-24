@@ -7,9 +7,8 @@ import com.samskivert.mustache.Template;
 import org.rococoa.okeydoke.formatters.StringFormatter;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.Charset;
-
-import static com.google.common.io.Resources.getResource;
 
 public class TemplateFormatter extends StringFormatter {
     private final Template template;
@@ -17,7 +16,7 @@ public class TemplateFormatter extends StringFormatter {
 
     public TemplateFormatter(Class<?> testClass, String testName, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter) {
         super(charset);
-        this.template = loadTemplate(testClass, testName + ".template", valueEscaping);
+        this.template = loadTemplate(testClass, testName + ".template", charset, valueEscaping);
         this.postTemplateFilter = postTemplateFilter;
     }
 
@@ -26,15 +25,18 @@ public class TemplateFormatter extends StringFormatter {
         return postTemplateFilter.filter(template.execute(actual));
     }
 
-    private static Template loadTemplate(Class<?> testClass, String templateName, Escaping valueEscaping) {
+    private static Template loadTemplate(Class<?> testClass, String templateName, Charset charset, Escaping valueEscaping) {
         try {
+            URL resource = testClass.getResource(templateName);
+            if (resource == null) {
+                throw new MissingTemplateException(templateName);
+            }
+
             return Mustache.compiler()
                     .escaping(valueEscaping)
-                    .compile(Resources.toString(
-                            getResource(testClass, templateName),
-                            Charset.forName("UTF8")));
+                    .compile(Resources.toString(resource, charset));
         } catch (IOException e) {
-            throw new IllegalArgumentException("cannot load template " + templateName, e);
+            throw new IllegalArgumentException("invalid template " + templateName, e);
         }
     }
 }
