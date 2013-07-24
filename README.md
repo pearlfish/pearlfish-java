@@ -19,7 +19,7 @@ Document publishing pipeline:
 Build
 -----
 
-Cd to the java/ directory and run [Ant](http://ant.apache.org).  JAR files will be created in the java/out/ directory.
+Cd to the java/ directory and run `./build`.  JAR files will be created in the java/out/ directory.
 
 Documentation
 -------------
