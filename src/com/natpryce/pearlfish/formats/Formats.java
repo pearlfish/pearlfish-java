@@ -2,25 +2,17 @@ package com.natpryce.pearlfish.formats;
 
 import com.natpryce.pearlfish.internal.MarkdownEscaping;
 import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
+import com.natpryce.pearlfish.internal.TemplateFormat;
 import com.natpryce.pearlfish.internal.YamlFormatter;
+import com.samskivert.mustache.formats.NoEscaping;
 import org.rococoa.okeydoke.Formatter;
 
 import java.nio.charset.Charset;
 
 public interface Formats {
-    Format MARKDOWN = new Format() {
-        @Override
-        public TemplateFormatter formatterFor(String testName, Class<?> testClass) {
-            return new TemplateFormatter(testClass, testName, Charset.defaultCharset(),
-                    new MarkdownEscaping(),
-                    new MarkdownTableLayoutFilter());
-        }
+    Format MARKDOWN = new TemplateFormat(".md", new MarkdownEscaping(), new MarkdownTableLayoutFilter());
 
-        @Override
-        public String fileExtension() {
-            return ".md";
-        }
-    };
+    Format PLAIN_TEXT = new TemplateFormat(".txt", new NoEscaping(), TextFilter.IDENTITY);
 
     Format YAML = new Format() {
         @Override

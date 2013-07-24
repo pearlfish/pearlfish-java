@@ -14,7 +14,7 @@ public class TemplateFormatter extends StringFormatter {
     private final Template template;
     private final TextFilter postTemplateFilter;
 
-    public TemplateFormatter(Class<?> testClass, String testName, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter) {
+    public TemplateFormatter(String testName, Class<?> testClass, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter) {
         super(charset);
         this.template = loadTemplate(testClass, testName + ".template", charset, valueEscaping);
         this.postTemplateFilter = postTemplateFilter;

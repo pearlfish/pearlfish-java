@@ -92,6 +92,12 @@
     </fileset>
   </path>
   
+  <path id="library.snakeyaml.classpath">
+    <fileset dir="${basedir}/libs/snakeyaml">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
   <!-- Modules -->
   
   
@@ -115,6 +121,7 @@
     <path refid="library.guava.classpath"/>
     <path refid="library.okeydoke.classpath"/>
     <path refid="library.jmustache.classpath"/>
+    <path refid="library.snakeyaml.classpath"/>
   </path>
   
   <path id="pearlfish.runtime.production.module.classpath">
@@ -123,6 +130,7 @@
     <path refid="library.guava.classpath"/>
     <path refid="library.okeydoke.classpath"/>
     <path refid="library.jmustache.classpath"/>
+    <path refid="library.snakeyaml.classpath"/>
   </path>
   
   <path id="pearlfish.module.classpath">
@@ -132,6 +140,7 @@
     <path refid="library.okeydoke.classpath"/>
     <path refid="library.hamcrest.classpath"/>
     <path refid="library.jmustache.classpath"/>
+    <path refid="library.snakeyaml.classpath"/>
   </path>
   
   <path id="pearlfish.runtime.module.classpath">
@@ -142,6 +151,7 @@
     <path refid="library.okeydoke.classpath"/>
     <path refid="library.hamcrest.classpath"/>
     <path refid="library.jmustache.classpath"/>
+    <path refid="library.snakeyaml.classpath"/>
   </path>
   
   
@@ -170,7 +180,7 @@
   
   <target name="compile.module.pearlfish.production" description="Compile module pearlfish; production classes">
     <mkdir dir="${pearlfish.output.dir}"/>
-    <javac destdir="${pearlfish.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" includeantruntime="false">
+    <javac destdir="${pearlfish.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.pearlfish}"/>
       <bootclasspath refid="pearlfish.module.bootclasspath"/>
       <classpath refid="pearlfish.module.production.classpath"/>
