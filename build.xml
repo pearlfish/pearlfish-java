@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pearlfish" default="test">
+<project name="pearlfish" default="package">
     <import file="pearlfish.xml"/>
 
     <property name="report.dir" value="${module.pearlfish.basedir}/out/reports"/>
+
+    <property name="version" value="SNAPSHOT"/>
+
+    <target name="package" depends="test">
+        <move file="${artifact.output.pearlfish.jar}/pearlfish.jar"
+              tofile="${artifact.output.pearlfish.jar}/pearlfish-${version}.jar"/>
+        <delete dir="${artifact.output.pearlfish.jar}" includes="*-sources.jar"/>
+    </target>
 
     <target name="test" depends="all">
         <delete dir="${report.dir}"/>
@@ -35,4 +43,7 @@
         <fail if="${tests.failed}"/>
     </target>
 
+    <target name="real-clean">
+        <delete dir="out"/>
+    </target>
 </project>
