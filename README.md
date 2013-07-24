@@ -1,7 +1,5 @@
-Pearlfish
-=========
-
-![Pearlfish](pearlfish.png)
+Pearlfish for Java
+==================
 
 Specification-by-Example crossed with Approval Testing
 
