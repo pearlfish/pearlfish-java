@@ -1,0 +1,18 @@
+multiplying:
+- !scenario
+  input: [1, 2, 4]
+  name: double
+  output: [2, 4, 8]
+- !scenario
+  input: [1, 2, 4]
+  name: triple
+  output: [3, 6, 12]
+adding:
+- !scenario
+  input: [1, 2, 4]
+  name: '+1'
+  output: [2, 3, 5]
+- !scenario
+  input: [1, 2, 4]
+  name: '+2'
+  output: [3, 4, 6]
