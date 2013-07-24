@@ -1,6 +1,7 @@
 package com.natpryce.pearlfish.internal;
 
 import com.google.common.base.Strings;
+import com.natpryce.pearlfish.formats.TextFilter;
 
 import java.io.IOException;
 import java.io.StringReader;

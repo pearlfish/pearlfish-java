@@ -1,7 +1,6 @@
 package com.natpryce.pearlfish.formats;
 
 import com.google.common.io.Resources;
-import com.natpryce.pearlfish.internal.TextFilter;
 import com.samskivert.mustache.Escaping;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
@@ -12,29 +11,22 @@ import java.nio.charset.Charset;
 
 import static com.google.common.io.Resources.getResource;
 
-public abstract class TemplateFormatter extends StringFormatter {
-    private final Class<?> testClass;
-    private final String testName;
-    private final Escaping valueEscaping;
+public class TemplateFormatter extends StringFormatter {
+    private final Template template;
     private final TextFilter postTemplateFilter;
 
     public TemplateFormatter(Class<?> testClass, String testName, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter) {
         super(charset);
-        this.testClass = testClass;
-        this.testName = testName;
-        this.valueEscaping = valueEscaping;
+        this.template = loadTemplate(testClass, testName + ".template", valueEscaping);
         this.postTemplateFilter = postTemplateFilter;
     }
 
     @Override
     public String formatted(Object actual) {
-        Template template = loadTemplate();
         return postTemplateFilter.filter(template.execute(actual));
     }
 
-    private Template loadTemplate() {
-        final String templateName = testName + fileExtension() + ".template";
-
+    private static Template loadTemplate(Class<?> testClass, String templateName, Escaping valueEscaping) {
         try {
             return Mustache.compiler()
                     .escaping(valueEscaping)
@@ -45,6 +37,4 @@ public abstract class TemplateFormatter extends StringFormatter {
             throw new IllegalArgumentException("cannot load template " + templateName, e);
         }
     }
-
-    public abstract String fileExtension();
 }

@@ -1,6 +1,9 @@
 package com.natpryce.pearlfish.formats;
 
 
+import org.rococoa.okeydoke.Formatter;
+
 public interface Format {
-    TemplateFormatter formatterFor(String testName, Class<?> testClass);
+    Formatter<Object,String> formatterFor(String testName, Class<?> testClass);
+    String fileExtension();
 }

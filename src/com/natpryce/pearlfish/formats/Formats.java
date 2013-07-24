@@ -1,14 +1,22 @@
 package com.natpryce.pearlfish.formats;
 
-import org.rococoa.okeydoke.Formatter;
+import com.natpryce.pearlfish.internal.MarkdownEscaping;
+import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
 
 import java.nio.charset.Charset;
 
 public interface Formats {
     Format MARKDOWN = new Format() {
         @Override
-        public MarkdownFormatter formatterFor(String testName, Class<?> testClass) {
-            return new MarkdownFormatter(testClass, testName, Charset.defaultCharset());
+        public TemplateFormatter formatterFor(String testName, Class<?> testClass) {
+            return new TemplateFormatter(testClass, testName, Charset.defaultCharset(),
+                    new MarkdownEscaping(),
+                    new MarkdownTableLayoutFilter());
+        }
+
+        @Override
+        public String fileExtension() {
+            return ".md";
         }
     };
 }
