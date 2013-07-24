@@ -1,6 +1,7 @@
 package com.natpryce.pearlfish.example;
 
 
+import com.natpryce.pearlfish.formats.Formats;
 import com.natpryce.pearlfish.junit.Pearlfish;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,9 +11,10 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import static com.natpryce.pearlfish.Results.*;
+import static com.natpryce.pearlfish.formats.Formats.MARKDOWN;
 
 public class BasicArithmeticExample {
-    public @Rule ApprovalsRule approvals = Pearlfish.pearlfishApprovalsRule("test");
+    public @Rule ApprovalsRule approvals = Pearlfish.pearlfishApprovalsRule("test", MARKDOWN);
 
     @Test
     @SuppressWarnings("unchecked")
