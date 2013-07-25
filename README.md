@@ -26,3 +26,5 @@ Documentation
 
 None yet.  Have a look at the examples in the test/ directory.
 
+
+Follow [@pearlfishlib](https://twitter.com/pearlfishlib) on Twitter to receive occasional news.
