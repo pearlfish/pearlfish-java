@@ -11,11 +11,7 @@ public class Calculator {
     }
 
     public void push(long operand) {
-        operands.push(BigInteger.valueOf(operand));
-    }
-
-    public BigInteger top() {
-        return operands.peek();
+        push(BigInteger.valueOf(operand));
     }
 
     public BigInteger pop() {
