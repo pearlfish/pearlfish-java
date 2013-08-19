@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact name="pearlfish.jar">
+  <artifact build-on-make="true" name="pearlfish.jar">
     <output-path>$PROJECT_DIR$/out/</output-path>
     <root id="root">
       <element id="archive" name="pearlfish.jar">
@@ -10,7 +10,7 @@
       </element>
       <element id="library" level="project" name="guava" />
       <element id="library" level="project" name="jmustache" />
-      <element id="library" level="project" name="okeydoke" />
+      <element id="library" level="project" name="snakeyaml" />
     </root>
   </artifact>
 </component>

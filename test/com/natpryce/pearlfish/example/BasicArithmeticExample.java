@@ -2,10 +2,10 @@ package com.natpryce.pearlfish.example;
 
 
 import com.natpryce.pearlfish.Scenario;
-import com.natpryce.pearlfish.junit.Pearlfish;
+import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
+import com.natpryce.pearlfish.adaptor.junit.Pearlfish;
 import org.junit.Rule;
 import org.junit.Test;
-import org.rococoa.okeydoke.junit.ApprovalsRule;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -15,7 +15,7 @@ import static com.natpryce.pearlfish.formats.Formats.MARKDOWN;
 
 @SuppressWarnings("unchecked")
 public class BasicArithmeticExample {
-    public @Rule ApprovalsRule approvals = Pearlfish.approvalRule("test", MARKDOWN);
+    public @Rule ApprovalRule<Object> approvals = Pearlfish.approvalRule("test", MARKDOWN);
 
     /** This is the code that we are testing
      */
@@ -23,7 +23,7 @@ public class BasicArithmeticExample {
 
     @Test
     public void addition() throws IOException {
-        approvals.assertApproved(results(
+        approvals.check(results(
                 section("basic",
                         addition("simple add", 1, 2),
                         addition("zero left", 0, 2),
@@ -42,7 +42,7 @@ public class BasicArithmeticExample {
 
     @Test
     public void multiplication() throws IOException {
-        approvals.assertApproved(results(
+        approvals.check(results(
                 section("basic",
                         multiplication("simple multiplication", 2, 5),
                         multiplication("zero left", 0, 2),

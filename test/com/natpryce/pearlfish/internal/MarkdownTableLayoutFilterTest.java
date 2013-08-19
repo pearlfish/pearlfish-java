@@ -1,14 +1,15 @@
 package com.natpryce.pearlfish.internal;
 
 import com.google.common.base.Joiner;
+import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
+import com.natpryce.pearlfish.formats.Formats;
 import org.junit.Rule;
 import org.junit.Test;
-import org.rococoa.okeydoke.junit.ApprovalsRule;
 
 import java.io.IOException;
 
 public class MarkdownTableLayoutFilterTest {
-    public @Rule ApprovalsRule approvals = ApprovalsRule.fileSystemRule("test");
+    @Rule public ApprovalRule<String> approvals = InternalApprovals.selfTestApprover(Formats.STRING);
 
     MarkdownTableLayoutFilter filter = new MarkdownTableLayoutFilter();
 
@@ -27,7 +28,7 @@ public class MarkdownTableLayoutFilterTest {
                 "",
                 "and some more text...");
 
-        approvals.assertApproved(filter.filter(markdown));
+        approvals.check(filter.filter(markdown));
     }
 
     @Test
@@ -38,7 +39,7 @@ public class MarkdownTableLayoutFilterTest {
                 "| cell A1 | long cell A2 | cell A3 |",
                 "| long cell B1 | B2 | long cell B3 |");
 
-        approvals.assertApproved(filter.filter(markdown));
+        approvals.check(filter.filter(markdown));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class MarkdownTableLayoutFilterTest {
                 "| Column 1 | Column 2 | Column 3 |",
                 "| cell\\|A1\\| | cell\\|A2\\| | cell\\|A3\\| |");
 
-        approvals.assertApproved(filter.filter(markdown));
+        approvals.check(filter.filter(markdown));
     }
 
     private String md(String... lines) {

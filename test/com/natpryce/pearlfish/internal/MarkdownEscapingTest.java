@@ -1,15 +1,17 @@
 package com.natpryce.pearlfish.internal;
 
 import com.google.common.base.Joiner;
+import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.rococoa.okeydoke.junit.ApprovalsRule;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
+import static com.natpryce.pearlfish.formats.Formats.STRING;
+
 public class MarkdownEscapingTest {
-    public @Rule ApprovalsRule approvals = ApprovalsRule.fileSystemRule("test");
+    public @Rule ApprovalRule<String> approvals = InternalApprovals.selfTestApprover(STRING);
 
     MarkdownEscaping escaping = new MarkdownEscaping();
 
@@ -30,6 +32,6 @@ public class MarkdownEscapingTest {
             transforms.put(example, escaping.escape(example));
         }
 
-        approvals.assertApproved(Joiner.on("\n").withKeyValueSeparator(" -> ").join(transforms));
+        approvals.check(Joiner.on("\n").withKeyValueSeparator(" -> ").join(transforms));
     }
 }

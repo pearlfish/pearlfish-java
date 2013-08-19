@@ -10,7 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="junit" level="project" />
     <orderEntry type="library" name="guava" level="project" />
-    <orderEntry type="library" name="okeydoke" level="project" />
     <orderEntry type="library" scope="TEST" name="hamcrest" level="project" />
     <orderEntry type="library" name="jmustache" level="project" />
     <orderEntry type="library" name="snakeyaml" level="project" />
