@@ -3,7 +3,8 @@ package com.natpryce.pearlfish.adaptor.junit;
 import com.natpryce.pearlfish.ApprovalError;
 import com.natpryce.pearlfish.Approver;
 import com.natpryce.pearlfish.FileNamingConvention;
-import com.natpryce.pearlfish.TestSpecificFormat;
+import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.TestSpecific;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -11,12 +12,12 @@ import org.junit.runners.model.Statement;
 import java.io.IOException;
 
 public class ApprovalRule<T> implements TestRule {
-    private final TestSpecificFormat<? super T> format;
+    private final TestSpecific<? extends Format<? super T>> format;
     private final FileNamingConvention namingConvention;
 
     private Approver<T> approver = null;
 
-    public ApprovalRule(TestSpecificFormat<? super T> format, FileNamingConvention namingConvention) {
+    public ApprovalRule(TestSpecific<? extends Format<? super T>> format, FileNamingConvention namingConvention) {
         this.namingConvention = namingConvention;
         this.format = format;
     }

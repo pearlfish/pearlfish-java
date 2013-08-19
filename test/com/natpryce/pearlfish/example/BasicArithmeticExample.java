@@ -10,7 +10,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import static com.natpryce.pearlfish.Results.*;
+import static com.natpryce.pearlfish.Results.results;
+import static com.natpryce.pearlfish.Results.scenario;
+import static com.natpryce.pearlfish.Results.section;
 import static com.natpryce.pearlfish.formats.Formats.MARKDOWN;
 
 @SuppressWarnings("unchecked")

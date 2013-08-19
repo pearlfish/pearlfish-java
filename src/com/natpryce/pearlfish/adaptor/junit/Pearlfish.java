@@ -1,6 +1,7 @@
 package com.natpryce.pearlfish.adaptor.junit;
 
-import com.natpryce.pearlfish.TestSpecificFormat;
+import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.TestSpecific;
 import com.natpryce.pearlfish.formats.Formats;
 import com.natpryce.pearlfish.naming.NextToSourceNamingConvention;
 
@@ -11,7 +12,7 @@ public class Pearlfish {
         return approvalRule(srcRoot, Formats.PLAIN_TEXT);
     }
 
-    public static <T> ApprovalRule<T> approvalRule(final String srcRoot, final TestSpecificFormat<? super T> format) {
+    public static <T> ApprovalRule<T> approvalRule(final String srcRoot, final TestSpecific<? extends Format<? super T>> format) {
         return new ApprovalRule<T>(format, new NextToSourceNamingConvention(new File(srcRoot)));
     }
 }
