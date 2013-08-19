@@ -13,17 +13,13 @@ import static com.google.common.io.Files.newInputStreamSupplier;
 
 public class Approver<T> {
     private final Format<? super T> format;
-    private final Class<?> testClass;
-    private final String testName;
     private final FileNamingConvention namingConvention;
 
-    public Approver(Class<?> testClass, String testName, FileNamingConvention namingConvention, Format<? super T> format) {
-        this.testClass = testClass;
-        this.testName = testName;
+    public Approver(FileNamingConvention namingConvention, Format<? super T> format) {
         this.namingConvention = namingConvention;
         this.format = format;
     }
-
+    
     public void check(T receivedContents) throws IOException {
         File receivedFile = receivedFile();
         File approvedFile = approvedFile();
@@ -47,11 +43,11 @@ public class Approver<T> {
     }
 
     private File approvedFile() {
-        return namingConvention.approvedFileFor(testClass, testName, format.extension());
+        return namingConvention.approvedFileName(format.extension());
     }
 
     private File receivedFile() {
-        return namingConvention.receivedFileFor(testClass, testName, format.extension());
+        return namingConvention.receivedFileName(format.extension());
     }
 
     private boolean haveTheSameContents(File receivedFile, File approvedFile) throws IOException {

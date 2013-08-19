@@ -13,11 +13,13 @@ import java.io.IOException;
 
 public class ApprovalRule<T> implements TestRule {
     private final TestSpecific<? extends Format<? super T>> format;
-    private final FileNamingConvention namingConvention;
+    private final TestSpecific<? extends FileNamingConvention> namingConvention;
 
     private Approver<T> approver = null;
 
-    public ApprovalRule(TestSpecific<? extends Format<? super T>> format, FileNamingConvention namingConvention) {
+    public ApprovalRule(TestSpecific<? extends Format<? super T>> format,
+                        TestSpecific<? extends FileNamingConvention> namingConvention)
+    {
         this.namingConvention = namingConvention;
         this.format = format;
     }
@@ -47,9 +49,7 @@ public class ApprovalRule<T> implements TestRule {
         Class<?> testClass = description.getTestClass();
         String testName = description.getMethodName();
         approver = new Approver<T>(
-                testClass,
-                testName,
-                namingConvention,
+                namingConvention.forTest(testClass, testName),
                 format.forTest(testClass, testName));
         return base;
     }

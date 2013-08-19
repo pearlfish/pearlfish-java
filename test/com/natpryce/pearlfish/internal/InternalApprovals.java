@@ -6,7 +6,7 @@ import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
 import com.natpryce.pearlfish.naming.NextToSourceNamingConvention;
 
 public class InternalApprovals {
-    static <T> ApprovalRule<T> selfTestApprover(final TestSpecific<? extends Format<? super T>> format) {
-        return new ApprovalRule<T>(format, new NextToSourceNamingConvention("test"));
+    static <T> ApprovalRule<T> selfTestApprover(TestSpecific<? extends Format<? super T>> format) {
+        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forSourceDirectory("test"));
     }
 }
