@@ -57,4 +57,14 @@ public class FormatType {
     public FormatType generalised() {
         return baseTypeOrNull;
     }
+
+    public FormatType mostGeneralType() {
+        FormatType t = this;
+
+        while (t.baseTypeOrNull != null) {
+            t = t.baseTypeOrNull;
+        }
+
+        return t;
+    }
 }
