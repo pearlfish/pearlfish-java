@@ -20,5 +20,14 @@ public interface Format<T> {
      *
      * @return the file extension of files in this format.
      */
-    String extension();
+    String fileExtension();
+
+    /**
+     * Reports the format type files in this format.
+     *
+     * This is used to look up a suitable method for reporting differences between the files.
+     *
+     * @return the format type of files in this format.
+     */
+    FormatType fileType();
 }

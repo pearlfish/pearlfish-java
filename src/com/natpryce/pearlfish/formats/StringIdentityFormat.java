@@ -1,18 +1,18 @@
 package com.natpryce.pearlfish.formats;
 
+import com.natpryce.pearlfish.FormatType;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 public class StringIdentityFormat implements com.natpryce.pearlfish.Format<String> {
     private final String extension;
+    private final FormatType fileType;
 
-    public StringIdentityFormat() {
-        this(".txt");
-    }
-
-    public StringIdentityFormat(String extension) {
+    public StringIdentityFormat(String extension, FormatType fileType) {
         this.extension = extension;
+        this.fileType = fileType;
     }
 
     @Override
@@ -23,7 +23,12 @@ public class StringIdentityFormat implements com.natpryce.pearlfish.Format<Strin
     }
 
     @Override
-    public String extension() {
+    public String fileExtension() {
         return extension;
+    }
+
+    @Override
+    public FormatType fileType() {
+        return fileType;
     }
 }

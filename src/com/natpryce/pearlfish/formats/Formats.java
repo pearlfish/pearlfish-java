@@ -1,44 +1,45 @@
 package com.natpryce.pearlfish.formats;
 
 import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.FormatType;
 import com.natpryce.pearlfish.TestSpecific;
 import com.natpryce.pearlfish.internal.MarkdownEscaping;
 import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
-import com.natpryce.pearlfish.internal.YamlFormatter;
+import com.natpryce.pearlfish.internal.YamlFormat;
 import com.samskivert.mustache.formats.NoEscaping;
 
 import java.nio.charset.Charset;
 
 public class Formats {
-    public static TestSpecific<Format<String>> string(final String fileExtension) {
+    public static TestSpecific<Format<String>> string(final String fileExtension, final FormatType fileType) {
         return new TestSpecific<Format<String>>() {
             @Override
             public Format<String> forTest(Class<?> testClass, String testName) {
-                return new StringIdentityFormat(fileExtension);
+                return new StringIdentityFormat(fileExtension, fileType);
             }
         };
     }
 
-    public static final TestSpecific<Format<String>> STRING = string(".txt");
+    public static final TestSpecific<Format<String>> STRING = string(".txt", FormatType.of("text"));
 
     public static final TestSpecific<Format<Object>> YAML = new TestSpecific<Format<Object>>() {
         @Override
         public Format<Object> forTest(Class<?> testClass, String testName) {
-            return new YamlFormatter(Charset.defaultCharset());
+            return new YamlFormat(Charset.defaultCharset());
         }
     };
 
     public static final TestSpecific<TemplatedTextFormat> _MARKDOWN = new TestSpecific<TemplatedTextFormat>() {
         @Override
         public TemplatedTextFormat forTest(Class<?> testClass, String testName) {
-            return TemplatedTextFormat.fromResource(testClass, testName, ".md", Charset.defaultCharset(), new MarkdownEscaping(), new MarkdownTableLayoutFilter());
+            return TemplatedTextFormat.fromResource(testClass, testName, Charset.defaultCharset(), new MarkdownEscaping(), new MarkdownTableLayoutFilter(), ".md", FormatType.of("text", "markdown"));
         }
     };
 
     public static final TestSpecific<TemplatedTextFormat> _PLAIN_TEXT = new TestSpecific<TemplatedTextFormat>() {
         @Override
         public TemplatedTextFormat forTest(Class<?> testClass, String testName) {
-            return TemplatedTextFormat.fromResource(testClass, testName, ".txt", Charset.defaultCharset(), new NoEscaping(), TextFilter.IDENTITY);
+            return TemplatedTextFormat.fromResource(testClass, testName, Charset.defaultCharset(), new NoEscaping(), TextFilter.IDENTITY, ".txt", FormatType.of("text"));
         }
     };
 

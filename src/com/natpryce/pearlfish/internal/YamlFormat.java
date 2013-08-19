@@ -1,6 +1,7 @@
 package com.natpryce.pearlfish.internal;
 
 import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.FormatType;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.representer.Representer;
@@ -10,12 +11,12 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 
-public class YamlFormatter implements Format<Object> {
+public class YamlFormat implements Format<Object> {
     private final DumperOptions options = new DumperOptions();
     private final Representer representer = new Representer();
     private final Charset charset;
 
-    public YamlFormatter(Charset charset) {
+    public YamlFormat(Charset charset) {
         this.charset = charset;
         this.options.setAllowReadOnlyProperties(true);
     }
@@ -30,7 +31,12 @@ public class YamlFormatter implements Format<Object> {
     }
 
     @Override
-    public String extension() {
+    public String fileExtension() {
         return ".yaml";
+    }
+
+    @Override
+    public FormatType fileType() {
+        return FormatType.of("text", "yaml");
     }
 }

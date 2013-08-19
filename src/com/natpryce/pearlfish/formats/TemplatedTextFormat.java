@@ -2,6 +2,7 @@ package com.natpryce.pearlfish.formats;
 
 import com.google.common.io.Resources;
 import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.FormatType;
 import com.samskivert.mustache.Escaping;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
@@ -16,22 +17,34 @@ public class TemplatedTextFormat implements Format<Object> {
     private final Template template;
     private final TextFilter postTemplateFilter;
     private final String fileExtension;
+    private final FormatType fileType;
 
-    public TemplatedTextFormat(Template template, TextFilter postTemplateFilter, String fileExtension) {
+    public TemplatedTextFormat(Template template, TextFilter postTemplateFilter, String fileExtension, FormatType fileType) {
         this.template = template;
         this.postTemplateFilter = postTemplateFilter;
         this.fileExtension = fileExtension;
+        this.fileType = fileType;
     }
 
-    public static TemplatedTextFormat fromResource(Class<?> relativeToClass, String baseName, String fileExtension, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter) {
-        final Template template = loadTemplate(relativeToClass, relativeToClass.getSimpleName() + "." + baseName + fileExtension + ".template", charset, valueEscaping);
-        return new TemplatedTextFormat(template, postTemplateFilter, fileExtension);
+    public static TemplatedTextFormat fromResource(Class<?> relativeToClass, String baseName, Charset charset, Escaping valueEscaping, TextFilter postTemplateFilter, String fileExtension, final FormatType fileType) {
+        final String resourceName = relativeToClass.getSimpleName() + "." + baseName + fileExtension + ".template";
+
+        return new TemplatedTextFormat(
+                loadTemplate(relativeToClass, resourceName, charset, valueEscaping),
+                postTemplateFilter,
+                fileExtension,
+                fileType);
 
     }
 
     @Override
-    public String extension() {
+    public String fileExtension() {
         return fileExtension;
+    }
+
+    @Override
+    public FormatType fileType() {
+        return fileType;
     }
 
     @Override

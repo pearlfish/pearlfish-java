@@ -19,7 +19,7 @@ public class Approver<T> {
         this.namingConvention = namingConvention;
         this.format = format;
     }
-    
+
     public void check(T receivedContents) throws IOException {
         File receivedFile = receivedFile();
         File approvedFile = approvedFile();
@@ -43,11 +43,11 @@ public class Approver<T> {
     }
 
     private File approvedFile() {
-        return namingConvention.approvedFileName(format.extension());
+        return namingConvention.approvedFileName(format.fileExtension());
     }
 
     private File receivedFile() {
-        return namingConvention.receivedFileName(format.extension());
+        return namingConvention.receivedFileName(format.fileExtension());
     }
 
     private boolean haveTheSameContents(File receivedFile, File approvedFile) throws IOException {

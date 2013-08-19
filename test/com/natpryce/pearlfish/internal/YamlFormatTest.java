@@ -14,13 +14,13 @@ import static com.natpryce.pearlfish.Results.results;
 import static com.natpryce.pearlfish.Results.section;
 import static java.util.Arrays.asList;
 
-public class YamlFormatterTest {
+public class YamlFormatTest {
     public
     @Rule
     ApprovalRule<String> approvals = InternalApprovals.selfTestApprover(Formats.STRING);
 
     Charset charset = Charset.defaultCharset();
-    YamlFormatter formatter = new YamlFormatter(charset);
+    YamlFormat formatter = new YamlFormat(charset);
 
     @Test
     @SuppressWarnings("unchecked")
