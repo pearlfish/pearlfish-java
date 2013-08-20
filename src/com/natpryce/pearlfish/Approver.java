@@ -1,23 +1,23 @@
 package com.natpryce.pearlfish;
 
 import com.google.common.io.ByteStreams;
-import com.google.common.io.Files;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 
 import static com.google.common.io.Files.newInputStreamSupplier;
 
 public class Approver<T> {
     private final Format<? super T> format;
     private final FileNamingConvention namingConvention;
+    private final DifferenceReporter differenceReporter;
 
-    public Approver(FileNamingConvention namingConvention, Format<? super T> format) {
+    public Approver(FileNamingConvention namingConvention, Format<? super T> format, DifferenceReporter differenceReporter) {
         this.namingConvention = namingConvention;
         this.format = format;
+        this.differenceReporter = differenceReporter;
     }
 
     public void check(T receivedContents) throws IOException {
@@ -26,12 +26,8 @@ public class Approver<T> {
 
         writeContents(receivedFile, receivedContents);
 
-        //TODO - handle binary formats with file types and diff reporters
-
-        if (!approvedFile.exists()) {
-            throw new ApprovalError(approvedFile, receivedFile, Files.toString(receivedFile, Charset.defaultCharset()));
-        } else if (!haveTheSameContents(receivedFile, approvedFile)) {
-            throw new ApprovalError(approvedFile, Files.toString(approvedFile, Charset.defaultCharset()), receivedFile, Files.toString(receivedFile, Charset.defaultCharset()));
+        if (!approvedFile.exists() || !haveTheSameContents(receivedFile, approvedFile)) {
+            differenceReporter.reportDifference(format.fileType(), approvedFile, receivedFile);
         }
 
         //noinspection ResultOfMethodCallIgnored
@@ -67,4 +63,5 @@ public class Approver<T> {
             out.close();
         }
     }
+
 }

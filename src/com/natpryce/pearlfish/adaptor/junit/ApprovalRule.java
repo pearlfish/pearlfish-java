@@ -1,6 +1,5 @@
 package com.natpryce.pearlfish.adaptor.junit;
 
-import com.natpryce.pearlfish.ApprovalError;
 import com.natpryce.pearlfish.Approver;
 import com.natpryce.pearlfish.FileNamingConvention;
 import com.natpryce.pearlfish.Format;
@@ -25,11 +24,7 @@ public class ApprovalRule<T> implements TestRule {
     }
 
     public void check(T receivedContents) throws IOException {
-        try {
-            approver().check(receivedContents);
-        } catch (ApprovalError e) {
-            throw new ApprovalFailure(e);
-        }
+        approver().check(receivedContents);
     }
 
     public void recordAsApproved(T receivedContents) throws IOException {
@@ -48,9 +43,12 @@ public class ApprovalRule<T> implements TestRule {
     public Statement apply(Statement base, Description description) {
         Class<?> testClass = description.getTestClass();
         String testName = description.getMethodName();
+
         approver = new Approver<T>(
                 namingConvention.forTest(testClass, testName),
-                format.forTest(testClass, testName));
+                format.forTest(testClass, testName),
+                new JUnitDifferenceReporter());
+
         return base;
     }
 }

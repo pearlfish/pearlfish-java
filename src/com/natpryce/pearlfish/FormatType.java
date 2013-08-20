@@ -8,6 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FormatType {
+    /**
+     * Constant defining the commonly used "text" base-type name.
+     */
+    public static String text = "text";
+
+    /**
+     * Constant defining the commonly used "text" base-type.
+     */
+    public static final FormatType TEXT_TYPE = FormatType.of(text);
+
+
     private final String name;
     private final FormatType baseTypeOrNull;
 
