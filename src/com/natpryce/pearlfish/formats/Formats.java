@@ -5,23 +5,23 @@ import com.natpryce.pearlfish.FormatType;
 import com.natpryce.pearlfish.TestSpecific;
 import com.natpryce.pearlfish.internal.MarkdownEscaping;
 import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
-import com.natpryce.pearlfish.internal.StringIdentityFormat;
+import com.natpryce.pearlfish.internal.ToStringFormat;
 import com.natpryce.pearlfish.internal.YamlFormat;
 import com.samskivert.mustache.formats.NoEscaping;
 
 import java.nio.charset.Charset;
 
 public class Formats {
-    public static TestSpecific<Format<String>> string(final String fileExtension, final FormatType fileType) {
-        return new TestSpecific<Format<String>>() {
+    public static TestSpecific<Format<Object>> string(final String fileExtension, final FormatType fileType) {
+        return new TestSpecific<Format<Object>>() {
             @Override
-            public Format<String> forTest(Class<?> testClass, String testName) {
-                return new StringIdentityFormat(fileExtension, fileType);
+            public Format<Object> forTest(Class<?> testClass, String testName) {
+                return new ToStringFormat(fileExtension, fileType);
             }
         };
     }
 
-    public static final TestSpecific<Format<String>> STRING = string(".txt", FormatType.of("text"));
+    public static final TestSpecific<Format<Object>> STRING = string(".txt", FormatType.of("text"));
 
     public static final TestSpecific<Format<Object>> YAML = new TestSpecific<Format<Object>>() {
         @Override

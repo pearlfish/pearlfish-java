@@ -7,19 +7,19 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-public class StringIdentityFormat implements Format<String> {
+public class ToStringFormat implements Format<Object> {
     private final String extension;
     private final FormatType fileType;
 
-    public StringIdentityFormat(String extension, FormatType fileType) {
+    public ToStringFormat(String extension, FormatType fileType) {
         this.extension = extension;
         this.fileType = fileType;
     }
 
     @Override
-    public void write(String value, OutputStream output) throws IOException {
+    public void write(Object value, OutputStream output) throws IOException {
         OutputStreamWriter writer = new OutputStreamWriter(output);
-        writer.write(value);
+        writer.write(value.toString());
         writer.flush();
     }
 
