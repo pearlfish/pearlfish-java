@@ -86,12 +86,6 @@
     </fileset>
   </path>
   
-  <path id="library.okeydoke.classpath">
-    <fileset dir="${basedir}/libs/okeydoke">
-      <patternset refid="library.patterns"/>
-    </fileset>
-  </path>
-  
   <path id="library.snakeyaml.classpath">
     <fileset dir="${basedir}/libs/snakeyaml">
       <patternset refid="library.patterns"/>
@@ -119,7 +113,6 @@
   <path id="pearlfish.module.production.classpath">
     <path refid="library.junit.classpath"/>
     <path refid="library.guava.classpath"/>
-    <path refid="library.okeydoke.classpath"/>
     <path refid="library.jmustache.classpath"/>
     <path refid="library.snakeyaml.classpath"/>
   </path>
@@ -128,7 +121,6 @@
     <pathelement location="${pearlfish.output.dir}"/>
     <path refid="library.junit.classpath"/>
     <path refid="library.guava.classpath"/>
-    <path refid="library.okeydoke.classpath"/>
     <path refid="library.jmustache.classpath"/>
     <path refid="library.snakeyaml.classpath"/>
   </path>
@@ -137,7 +129,6 @@
     <pathelement location="${pearlfish.output.dir}"/>
     <path refid="library.junit.classpath"/>
     <path refid="library.guava.classpath"/>
-    <path refid="library.okeydoke.classpath"/>
     <path refid="library.hamcrest.classpath"/>
     <path refid="library.jmustache.classpath"/>
     <path refid="library.snakeyaml.classpath"/>
@@ -148,7 +139,6 @@
     <pathelement location="${pearlfish.output.dir}"/>
     <path refid="library.junit.classpath"/>
     <path refid="library.guava.classpath"/>
-    <path refid="library.okeydoke.classpath"/>
     <path refid="library.hamcrest.classpath"/>
     <path refid="library.jmustache.classpath"/>
     <path refid="library.snakeyaml.classpath"/>
@@ -249,8 +239,8 @@
     <copy file="${basedir}/libs/guava/guava-14.0.1-sources.jar" tofile="${artifact.output.pearlfish.jar}/guava-14.0.1-sources.jar"/>
     <copy file="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar" tofile="${artifact.output.pearlfish.jar}/jmustache-natpryce-1.9-SNAPSHOT.jar"/>
     <copy file="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT-sources.jar" tofile="${artifact.output.pearlfish.jar}/jmustache-natpryce-1.9-SNAPSHOT-sources.jar"/>
-    <copy file="${basedir}/libs/okeydoke/okeydoke-0.8.1.jar" tofile="${artifact.output.pearlfish.jar}/okeydoke-0.8.1.jar"/>
-    <copy file="${basedir}/libs/okeydoke/okeydoke-0.8.1-sources.jar" tofile="${artifact.output.pearlfish.jar}/okeydoke-0.8.1-sources.jar"/>
+    <copy file="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar" tofile="${artifact.output.pearlfish.jar}/snakeyaml-1.11.jar"/>
+    <copy file="${basedir}/libs/snakeyaml/snakeyaml-1.11-sources.jar" tofile="${artifact.output.pearlfish.jar}/snakeyaml-1.11-sources.jar"/>
   </target>
   
   <target name="build.all.artifacts" depends="artifact.pearlfish.jar" description="Build all artifacts">
