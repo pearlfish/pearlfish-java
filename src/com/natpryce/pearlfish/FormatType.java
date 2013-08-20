@@ -7,6 +7,10 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An identifier of a file format, used to determine an appropriate method of reporting differences
+ * between files in this format.
+ */
 public class FormatType {
     /**
      * Constant defining the commonly used "text" base-type name.

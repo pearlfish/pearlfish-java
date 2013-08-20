@@ -39,11 +39,11 @@ public class Approver<T> {
     }
 
     private File approvedFile() {
-        return namingConvention.approvedFileName(format.fileExtension());
+        return namingConvention.approvedFile(format.fileExtension());
     }
 
     private File receivedFile() {
-        return namingConvention.receivedFileName(format.fileExtension());
+        return namingConvention.receivedFile(format.fileExtension());
     }
 
     private boolean haveTheSameContents(File receivedFile, File approvedFile) throws IOException {
@@ -63,5 +63,4 @@ public class Approver<T> {
             out.close();
         }
     }
-
 }

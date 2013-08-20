@@ -3,6 +3,11 @@ package com.natpryce.pearlfish;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * The format in which to record test results.
+ *
+ * @param <T> the type of object that can be formatted by this Format.
+ */
 public interface Format<T> {
     /**
      * Writes a formatted representation of <var>value</var> to <var>output</var>.

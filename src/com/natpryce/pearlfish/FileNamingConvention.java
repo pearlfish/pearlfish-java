@@ -2,8 +2,23 @@ package com.natpryce.pearlfish;
 
 import java.io.File;
 
+/**
+ * An object that knows where approved and received files for a test are located and how the are named.
+ */
 public interface FileNamingConvention {
-    File approvedFileName(String fileExtension);
+    /**
+     * Returns the approved file for a test.
+     *
+     * @param fileExtension the file extension to use for the file, including any separator character (e.g. ".txt").
+     * @return the identifier of the approved file.
+     */
+    File approvedFile(String fileExtension);
 
-    File receivedFileName(String fileExtension);
+    /**
+     * Returns the received file for a test.
+     *
+     * @param fileExtension the file extension to use for the file, including any separator character (e.g. ".txt").
+     * @return the identifier of the received file.
+     */
+    File receivedFile(String fileExtension);
 }

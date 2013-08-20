@@ -17,12 +17,12 @@ public class NextToSourceNamingConvention implements FileNamingConvention {
     }
 
     @Override
-    public File approvedFileName(String fileExtension) {
+    public File approvedFile(String fileExtension) {
         return fileFor("approved", fileExtension);
     }
 
     @Override
-    public File receivedFileName(String fileExtension) {
+    public File receivedFile(String fileExtension) {
         return fileFor("received", fileExtension);
     }
 
