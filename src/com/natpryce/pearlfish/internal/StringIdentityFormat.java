@@ -1,12 +1,13 @@
-package com.natpryce.pearlfish.formats;
+package com.natpryce.pearlfish.internal;
 
+import com.natpryce.pearlfish.Format;
 import com.natpryce.pearlfish.FormatType;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-public class StringIdentityFormat implements com.natpryce.pearlfish.Format<String> {
+public class StringIdentityFormat implements Format<String> {
     private final String extension;
     private final FormatType fileType;
 

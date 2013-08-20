@@ -5,6 +5,7 @@ import com.natpryce.pearlfish.FormatType;
 import com.natpryce.pearlfish.TestSpecific;
 import com.natpryce.pearlfish.internal.MarkdownEscaping;
 import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
+import com.natpryce.pearlfish.internal.StringIdentityFormat;
 import com.natpryce.pearlfish.internal.YamlFormat;
 import com.samskivert.mustache.formats.NoEscaping;
 
