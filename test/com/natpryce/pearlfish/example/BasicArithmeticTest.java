@@ -3,7 +3,6 @@ package com.natpryce.pearlfish.example;
 
 import com.natpryce.pearlfish.Scenario;
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
-import com.natpryce.pearlfish.adaptor.junit.Pearlfish;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -16,8 +15,8 @@ import static com.natpryce.pearlfish.Results.section;
 import static com.natpryce.pearlfish.formats.Formats.MARKDOWN;
 
 @SuppressWarnings("unchecked")
-public class BasicArithmeticExample {
-    public @Rule ApprovalRule<Object> approvals = Pearlfish.approvalRule("test", MARKDOWN);
+public class BasicArithmeticTest {
+    public @Rule ApprovalRule<Object> approval = new ApprovalRule<Object>("test", MARKDOWN);
 
     /** This is the code that we are testing
      */
@@ -25,7 +24,7 @@ public class BasicArithmeticExample {
 
     @Test
     public void addition() throws IOException {
-        approvals.check(results(
+        approval.check(results(
                 section("basic",
                         addition("simple add", 1, 2),
                         addition("zero left", 0, 2),
@@ -44,7 +43,7 @@ public class BasicArithmeticExample {
 
     @Test
     public void multiplication() throws IOException {
-        approvals.check(results(
+        approval.check(results(
                 section("basic",
                         multiplication("simple multiplication", 2, 5),
                         multiplication("zero left", 0, 2),
