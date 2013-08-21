@@ -3,7 +3,9 @@ package com.natpryce.pearlfish.adaptor.junit;
 import com.natpryce.pearlfish.Approver;
 import com.natpryce.pearlfish.FileNamingConvention;
 import com.natpryce.pearlfish.Format;
+import com.natpryce.pearlfish.FormatType;
 import com.natpryce.pearlfish.TestSpecific;
+import com.natpryce.pearlfish.internal.TypeDirectedDifferenceReporter;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -14,6 +16,8 @@ public class ApprovalRule<T> implements TestRule {
     private final TestSpecific<? extends Format<? super T>> format;
     private final TestSpecific<? extends FileNamingConvention> namingConvention;
 
+    private final TypeDirectedDifferenceReporter reporter;
+
     private Approver<T> approver = null;
 
     public ApprovalRule(TestSpecific<? extends Format<? super T>> format,
@@ -21,6 +25,9 @@ public class ApprovalRule<T> implements TestRule {
     {
         this.namingConvention = namingConvention;
         this.format = format;
+
+        this.reporter = new TypeDirectedDifferenceReporter(new JUnitBinaryFileDifferenceReporter());
+        this.reporter.register(FormatType.TEXT_TYPE, new JUnitTextDifferenceReporter());
     }
 
     public void check(T receivedContents) throws IOException {
@@ -47,7 +54,7 @@ public class ApprovalRule<T> implements TestRule {
         approver = new Approver<T>(
                 namingConvention.forTest(testClass, testName),
                 format.forTest(testClass, testName),
-                new JUnitDifferenceReporter());
+                reporter);
 
         return base;
     }
