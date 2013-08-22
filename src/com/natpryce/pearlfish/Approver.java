@@ -36,6 +36,9 @@ public class Approver<T> {
 
     public void recordAsApproved(T receivedContents) throws IOException {
         writeContents(approvedFile(), receivedContents);
+
+        //noinspection ResultOfMethodCallIgnored
+        receivedFile().delete();
     }
 
     private File approvedFile() {
