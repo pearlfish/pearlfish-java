@@ -1,12 +1,7 @@
 package com.natpryce.pearlfish.adaptor.junit;
 
 import com.google.common.io.Files;
-import com.natpryce.pearlfish.Approver;
-import com.natpryce.pearlfish.DifferenceReporter;
-import com.natpryce.pearlfish.FileNamingConvention;
-import com.natpryce.pearlfish.Format;
-import com.natpryce.pearlfish.FormatType;
-import com.natpryce.pearlfish.TestSpecific;
+import com.natpryce.pearlfish.*;
 import com.natpryce.pearlfish.internal.IO;
 import com.natpryce.pearlfish.internal.TypeDirectedDifferenceReporter;
 import com.natpryce.pearlfish.naming.NextToSourceNamingConvention;
@@ -50,7 +45,7 @@ public class ApprovalRule<T> implements TestRule {
         };
 
         reporter = new TypeDirectedDifferenceReporter(binaryReporter);
-        reporter.register(FormatType.TEXT_TYPE, textReporter);
+        reporter.register(FormatType.TEXT, textReporter);
     }
 
     public void check(T receivedContents) throws IOException {

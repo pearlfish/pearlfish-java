@@ -11,6 +11,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 
+import static com.natpryce.pearlfish.FormatType.TEXT;
+
 public class YamlFormat implements Format<Object> {
     private final DumperOptions options = new DumperOptions();
     private final Representer representer = new Representer();
@@ -37,6 +39,6 @@ public class YamlFormat implements Format<Object> {
 
     @Override
     public FormatType fileType() {
-        return FormatType.of("text", "yaml");
+        return TEXT.specialised("yaml");
     }
 }

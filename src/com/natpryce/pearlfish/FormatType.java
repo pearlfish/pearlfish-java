@@ -13,14 +13,19 @@ import java.util.List;
  */
 public class FormatType {
     /**
-     * Constant defining the commonly used "text" base-type name.
-     */
-    public static String text = "text";
-
-    /**
      * Constant defining the commonly used "text" base-type.
      */
-    public static final FormatType TEXT_TYPE = FormatType.of(text);
+    public static final FormatType TEXT = FormatType.of("text");
+
+    /**
+     * Constant defining the commonly used "json" base-type.
+     */
+    public static final FormatType JSON = TEXT.specialised("json");
+
+    /**
+     * Constant defining the commonly used "xml" base-type.
+     */
+    public static final FormatType XML = TEXT.specialised("xml");
 
 
     private final String name;
@@ -32,12 +37,9 @@ public class FormatType {
     }
 
     public static FormatType of(String name, String ...moreNames) {
-        FormatType type = new FormatType(name, null);
-        for (String anotherName : moreNames) {
-            type = new FormatType(anotherName, type);
-        }
-        return type;
+        return new FormatType(name, null).specialised(moreNames);
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -65,6 +67,10 @@ public class FormatType {
         return Joiner.on(".").join(Lists.reverse(parts));
     }
 
+    public FormatType specialised(String name, String ... moreNames) {
+        return new FormatType(name, this).specialised(moreNames);
+    }
+
     public boolean canBeGeneralised() {
         return baseTypeOrNull != null;
     }
@@ -73,13 +79,11 @@ public class FormatType {
         return baseTypeOrNull;
     }
 
-    public FormatType mostGeneralType() {
-        FormatType t = this;
-
-        while (t.baseTypeOrNull != null) {
-            t = t.baseTypeOrNull;
+    private FormatType specialised(String[] moreNames) {
+        FormatType result = this;
+        for (String anotherName : moreNames) {
+            result = new FormatType(anotherName, result);
         }
-
-        return t;
+        return result;
     }
 }

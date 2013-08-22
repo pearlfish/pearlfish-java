@@ -1,0 +1,5 @@
+<person>
+    <name>{{name}}</name>
+    <age>{{age}}</age>
+    <gender>{{gender}}</gender>
+</person>

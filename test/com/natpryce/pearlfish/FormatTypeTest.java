@@ -32,6 +32,12 @@ public class FormatTypeTest {
     }
 
     @Test
+    public void canBeSpecialised() throws IOException {
+        assertThat(FormatType.of("text","json").specialised("geojson"), equalTo(FormatType.of("text","json", "geojson")));
+        assertThat(FormatType.of("a").specialised("b", "c", "d"), equalTo(FormatType.of("a","b", "c", "d")));
+    }
+
+    @Test
     public void canBeGeneralised() throws IOException {
         assertTrue(FormatType.of("text", "json", "geojson").canBeGeneralised());
         assertThat(FormatType.of("text","json","geojson").generalised(), equalTo(FormatType.of("text","json")));
@@ -42,11 +48,5 @@ public class FormatTypeTest {
         assertFalse(FormatType.of("text").canBeGeneralised());
     }
 
-    @Test
-    public void reportsMostGeneralType() throws IOException {
-        assertThat(FormatType.of("text", "json", "geojson").mostGeneralType(), equalTo(FormatType.of("text")));
-        assertThat(FormatType.of("text", "json").mostGeneralType(), equalTo(FormatType.of("text")));
-        assertThat(FormatType.of("text").mostGeneralType(), equalTo(FormatType.of("text")));
-    }
 
 }
