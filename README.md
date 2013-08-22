@@ -3,6 +3,46 @@ Pearlfish for Java
 
 Specification-by-Example crossed with Approval Testing
 
+Overview
+--------
+
+There are two ways of using Pearlfish - as an [Approval Testing](http://www.approvaltesting.com)
+library that outputs documents suitable for [Specification by Example](http://en.wikipedia.org/wiki/Specification_by_example)
+or as a Specification by Example library that checks results by Approval Testing.
+
+At a very high level, the Approval Testing workflow is:
+
+ 1. Invoke the system under test and build up a data structure that stores the inputs and outputs of
+    all the invocations.
+
+ 2. Pass the data to the approval testing library for approval.  The library will write the data to a file (known as the
+    "received file") and compare it to an existing approved version (known as the "approved file").
+    Initially there will be no approved file, so the library will fail the test.
+
+ 3. Change the system until the received file contains the output values that you expect.
+
+ 4. Approve the the received file by renaming it have the name of the the approved file.
+
+ 5. From now on, the approval test library will fail the test if the received file is different from
+    the approved file.
+
+ 6. If the differences that approval test library detects are ok, approve the received file again.
+
+
+Pearlfish augments this workflow by letting you insert the data into documents in
+[Markdown](http://daringfireball.net/projects/markdown/) and other formats, so that you can add
+explanatory text or visualise the data. Formatting is controlled by [Mustache](http://mustache.github.io/) templates.
+If you don't write a template for a test, Pearlfish will save the data in a format
+(currently [YAML](http://www.yaml.org))  that is easy to read and diff and clearly shows the
+structure of the data that a template must follow.
+
+The generated documents can be translated to other formats -- HTML or PDF for example --
+with existing tools such as [Pandoc](http://johnmacfarlane.net/pandoc/index.html).
+
+To follow the usual document-first workflow of Specification by Example, write the Markdown document
+for a test first and save it as the approved file. Translate that document into a template by replacing
+the data with template declarations. Then capture data from the system and pass it to Pearlfish.
+At first, the test will fail.  Modify the system until the test passes.
 
 Requirements
 ------------
@@ -11,9 +51,10 @@ Pearlfish requires:
 
  * Java 1.7 or above
 
-Document publishing pipeline:
- * [Pandoc](http://johnmacfarlane.net/pandoc/index.html) 1.11.1 or above
- * Latex and pdfjam if you want to generate documentation in PDF
+To build from source, you need:
+
+ * Ant 1.8 or above
+ * Bash
 
 
 Build
@@ -21,10 +62,182 @@ Build
 
 Cd to the java/ directory and run `./build`.  JAR files will be created in the java/out/ directory.
 
-Documentation
--------------
 
-None yet.  Have a look at the examples in the test/ directory.
+A Short Example
+---------------
 
+In this example will use Pearlfish and JUnit to write tests for an RPN calculator. Pearlfish provides a
+streamlined API for using it with JUnit 4. You can use Pearlfish with other test
+frameworks by writing a thin adaptor layer, using the same extension points as the JUnit adaptor.
+
+We will start by doing approval testing and then generate Specification by Example documentation
+from the approval tests.
+
+The tests will control the calculator with the following API:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+public class Calculator {
+    public void push(BigInteger operand);
+    public void push(long operand);
+    public BigInteger pop();
+    public void add();
+    ... other operations...
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To test the calculator with Pearlfish and JUnit:
+
+ 1. Create an ApprovalRule as a field of the test object:
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+    public class BasicArithmeticTest {
+        public @Rule ApprovalRule<Object> approval = new ApprovalRule<Object>("test", Formats.MARKDOWN);
+
+        ...
+    }
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    The ApprovalRule constructor takes two parameters: the name of the directory that contains the source
+    code of our tests and the format in which we will record the results of the test
+    (in this case, Markdown).
+
+ 2. Perform some calculations with the calculator and build up a data structure that stores inputs and
+    calculated results.  Pearlfish provides some convenience classes and factory functions in the
+    `Results` class that combine inputs and outputs with an explanatory name and group related scenarios.
+    We need only define a class to hold the two input operands.
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+    public static class Operands {
+        public int x, y;
+
+        public Operands(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    With that we can write a method to perform a calculation and return information about the inputs and outputs:
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+    Scenario<Operands, BigInteger> addition(final String description, int x, int y)
+    {
+        calculator.push(x);
+        calculator.push(y);
+        calculator.add();
+        return Results.scenario(description, new Operands(x, y), calculator.pop());
+    }
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Our test will call addition multiple times to exercise different cases, using the functions of the
+    Results class to group the results into related sections before passing them all to the
+    ApprovalRule to be checked.
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+    @Test
+    public void addition() throws IOException {
+        approval.check(results(
+            addition("simple add", 1, 2),
+            addition("zero left", 0, 2),
+            addition("zero right", 1, 0),
+            addition("zero both", 0, 0)));
+    }
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 3. Because we have not written a template, the ApprovalRule saves the results in YAML format.
+    We can use this file to see the structure of the data that will be passed to our template.
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yaml
+    - !!com.natpryce.pearlfish.Scenario
+      input: !!com.natpryce.pearlfish.example.Operands {x: 1, y: 2}
+      name: simple add
+      output: 3
+    - !!com.natpryce.pearlfish.Scenario
+      input: !!com.natpryce.pearlfish.example.Operands {x: 0, y: 2}
+      name: zero left
+      output: 2
+
+    ... etc ...
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 4. Now we can write a to organise the data clearly in tables and add explanatory text.
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Addition
+    ========
+
+    The calculator performs basic addition.
+
+    | Scenario   | X            | Y            | X + Y      |
+    |------------|-------------:|-------------:|-----------:|
+    {{#results}}
+    | {{name}}   | {{input.x}}  | {{input.y}}  | {{output}} |
+    {{/results}}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 5. Rerunning the test generates the received file in Markdown format. Pearlfish ensures that
+    the tabular data is easy to read and differences are easy to see.
+
+ 6. As we implement the calculator we rerun the test.  When the results are as we expect, we
+    approve the received file.  From now on, it acts as a regression test.
+
+ 7. We can continue to add features to our calculator or increase test coverage. As we generate
+    more results we can use the Results class to group them into sections...
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
+        approval.check(results(
+                section("basic",
+                        multiplication("simple multiplication", 2, 5),
+                        multiplication("zero left", 0, 2),
+                        multiplication("zero right", 1, 0),
+                        multiplication("zero both", 0, 0)),
+                section("negative",
+                        multiplication("negative left", -4, 2),
+                        multiplication("negative right", 5, -4),
+                        multiplication("negative left and zero", -1, 0),
+                        multiplication("zero and negative right", 0, -6),
+                        multiplication("both negative", -4, -9)),
+                section("large",
+                        multiplication("large addition", Integer.MAX_VALUE, 2),
+                        multiplication("large negative numbers", Integer.MIN_VALUE, 2))));
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ...and extend our template to match:
+
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Addition
+    ========
+
+    The calculator performs basic addition.
+
+    | Scenario   | X            | Y            | X + Y      |
+    |------------|-------------:|-------------:|-----------:|
+    {{#basic}}
+    | {{name}}   | {{input.x}}  | {{input.y}}  | {{output}} |
+    {{/basic}}
+
+
+    Addition supports negative numbers.
+
+    | Scenario   | X            | Y            | X + Y      |
+    |------------|-------------:|-------------:|-----------:|
+    {{#negative}}
+    | {{name}}   | {{input.x}}  | {{input.y}}  | {{output}} |
+    {{/negative}}
+
+
+    Addition can result in integers larger than 32-bits in size.
+
+    | Scenario   | X            | Y            | X + Y      |
+    |------------|-------------:|-------------:|-----------:|
+    {{#large}}
+    | {{name}}   | {{input.x}}  | {{input.y}}  | {{output}} |
+    {{/large}}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+News
+----
 
 Follow [@pearlfishlib](https://twitter.com/pearlfishlib) on Twitter to receive occasional news.
