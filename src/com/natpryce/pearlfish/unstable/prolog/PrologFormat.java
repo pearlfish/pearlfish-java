@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
-public class PrologFormat implements Format<Iterable<Facts>> {
+public class PrologFormat implements Format<FactBase> {
     public static final TestSpecific<PrologFormat> PROLOG = new TestSpecific<PrologFormat>() {
         @Override
         public PrologFormat forTest(Class<?> testClass, String testName) {
@@ -17,11 +17,9 @@ public class PrologFormat implements Format<Iterable<Facts>> {
     };
 
     @Override
-    public void write(Iterable<Facts> value, OutputStream output) throws IOException {
+    public void write(FactBase facts, OutputStream output) throws IOException {
         PrintWriter writer = new PrintWriter(output);
-        for (Facts facts : value) {
-            facts.writePrologSyntax(writer);
-        }
+        facts.writePrologSyntax(writer);
         writer.flush();
     }
 

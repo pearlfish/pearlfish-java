@@ -1,34 +1,39 @@
 package com.natpryce.pearlfish.unstable.prolog;
 
-import com.google.common.collect.ImmutableList;
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
 import com.natpryce.pearlfish.internal.InternalApprovals;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static com.natpryce.pearlfish.unstable.prolog.PrologFormat.PROLOG;
-import static java.util.Arrays.asList;
 
 public class PrologFormatTest {
     public
     @Rule
-    ApprovalRule<Iterable<Facts>> approval = InternalApprovals.selfTestApprover(PROLOG);
+    ApprovalRule<FactBase> approval = InternalApprovals.selfTestApprover(PROLOG);
 
     @Test
     public void generatesProlog() throws IOException {
-        final List<Fact> facts = asList(
-                new Fact(true, "alice"),
-                new Fact(false, "bob"),
-                new Fact(true, "carol"),
-                new Fact(false, "dave"),
-                new Fact(true, "eve"));
+        FactBase facts = new FactBase();
 
-        final List<ImmutableList<String>> types = asList(
-                ImmutableList.of("+person"));
+        Facts female = facts.newFact("female", "person");
+        female.declare(true, "alice");
+        female.declare(false, "bob");
+        female.declare(true, "carol");
+        female.declare(false, "dave");
+        female.declare(true, "eve");
 
-        approval.check(asList(new Facts("female", types, facts)));
+        Facts greater = facts.newFact("ordered", "number", "number");
+        greater.declare(true, 10, 20);
+        greater.declare(true, 1, 2);
+        greater.declare(true, -5, -3);
+        greater.declare(true, -5, 4);
+        greater.declare(false, 2, 1);
+        greater.declare(false, 0, 0);
+        greater.declare(false, 1, 1);
+
+        approval.check(facts);
     }
 }

@@ -1,50 +1,60 @@
 package com.natpryce.pearlfish.unstable.prolog;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
-import static com.google.common.base.Functions.compose;
-import static com.google.common.base.Functions.toStringFunction;
-import static com.google.common.base.Joiner.on;
 import static com.google.common.collect.Iterables.transform;
+import static com.natpryce.pearlfish.unstable.prolog.PrologEscaping.toAtom;
 import static java.util.Arrays.asList;
 
-public class Facts {
+public class Facts implements Iterable<Fact> {
     public final String name;
-    public final ImmutableList<ImmutableList<String>> modes;
-    public final ImmutableList<Fact> facts;
+    public final ImmutableList<String> types;
 
-    public Facts(String name, Iterable<ImmutableList<String>> modes, Iterable<Fact> facts) {
-        this.name = name;
-        this.modes = ImmutableList.copyOf(modes);
-        this.facts = ImmutableList.copyOf(facts);
+    private final List<Fact> facts = Lists.newArrayList();
+
+    public Facts(String name, String... types) {
+        this.name = toAtom(name);
+        this.types = ImmutableList.copyOf(transform(asList(types), toAtom));
     }
 
-    public int arity() {
-        return modes.get(0).size();
+    public void declare(boolean isTrue, Object... params) {
+        if (params.length != arity()) {
+            throw new IllegalArgumentException("wrong arity: " + params.length + " params added to " + name + "/" + arity());
+        }
+
+        facts.add(new Fact(isTrue, params));
+    }
+
+    private int arity() {
+        return types.size();
+    }
+
+    @Override
+    public Iterator<Fact> iterator() {
+        return facts.iterator();
+    }
+
+    public void addTypeInformation(Multimap<String,String> typeToAtom) {
+        for (Fact fact : facts) {
+            for (int i = 0; i < fact.paramAtoms.size(); i++) {
+                String type = types.get(i);
+                String param = fact.paramAtoms.get(i);
+
+                typeToAtom.put(type, param);
+            }
+        }
     }
 
     public void writePrologSyntax(PrintWriter writer) throws IOException {
-        PrologEscaping escaping = new PrologEscaping();
-
-        for (ImmutableList<String> mode : modes) {
-            writer.println(modeToPrologSyntax(mode, escaping));
-        }
-
         for (Fact fact : facts) {
-            writer.println(factToPrologSyntax(fact, escaping));
+            fact.writePrologSyntax(writer, name);
         }
-    }
-
-    private String modeToPrologSyntax(ImmutableList<String> mode, PrologEscaping escaping) {
-        return "modeh(1," + escaping.apply(name) + "(" + on(", ").join(mode) + "))?";
-    }
-
-    private String factToPrologSyntax(Fact fact, PrologEscaping escaping) {
-        Iterable<String> paramAtoms = transform(asList(fact.params), compose(escaping, toStringFunction()));
-
-        return (fact.isTrue ? "" : ":- ") + escaping.apply(name) + "(" + on(", ").join(paramAtoms) + ").";
     }
 }
