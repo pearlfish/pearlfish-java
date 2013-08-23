@@ -110,6 +110,12 @@ public class Formats {
         return fallingBackTo(YAML, _xml(fileExtension, formatType));
     }
 
+    /**
+     * Formats values as XML SVG images using a template and writes the results to a file with the ".svg"
+     * extension.  If there is no template, it falls back to using the {@link Formats#YAML} formatter.
+     */
+    public static final TestSpecific<Format<Object>> SVG = xml(".svg", FormatType.XML.specialised("svg"));
+
     private static TestSpecific<Format<Object>> fallingBackTo(final TestSpecific<Format<Object>> fallbackFormat, final TestSpecific<TemplatedTextFormat> templateFormat) {
         return new TestSpecific<Format<Object>>() {
             @Override
