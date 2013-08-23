@@ -1,0 +1,36 @@
+basic:
+- input: {x: 2, y: 5}
+  name: simple multiplication
+  output: 10
+- input: {x: 0, y: 2}
+  name: zero left
+  output: 0
+- input: {x: 1, y: 0}
+  name: zero right
+  output: 0
+- input: {x: 0, y: 0}
+  name: zero both
+  output: 0
+negative:
+- input: {x: -4, y: 2}
+  name: negative left
+  output: -8
+- input: {x: 5, y: -4}
+  name: negative right
+  output: -20
+- input: {x: -1, y: 0}
+  name: negative left and zero
+  output: 0
+- input: {x: 0, y: -6}
+  name: zero and negative right
+  output: 0
+- input: {x: -4, y: -9}
+  name: both negative
+  output: 36
+large:
+- input: {x: 2147483647, y: 2}
+  name: large addition
+  output: 4294967294
+- input: {x: -2147483648, y: 2}
+  name: large negative numbers
+  output: -4294967296

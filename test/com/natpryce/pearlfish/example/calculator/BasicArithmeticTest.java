@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish.example;
+package com.natpryce.pearlfish.example.calculator;
 
 
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;

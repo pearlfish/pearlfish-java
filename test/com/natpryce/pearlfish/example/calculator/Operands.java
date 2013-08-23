@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish.example;
+package com.natpryce.pearlfish.example.calculator;
 
 public class Operands {
     public final int x, y;

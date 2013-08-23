@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish.example;
+package com.natpryce.pearlfish.example.calculator;
 
 import java.math.BigInteger;
 import java.util.Stack;

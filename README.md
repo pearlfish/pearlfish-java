@@ -156,15 +156,12 @@ To test the calculator with Pearlfish and JUnit:
     We can use this file to see the structure of the data that will be passed to our template.
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yaml
-    - !!com.natpryce.pearlfish.Scenario
-      input: !!com.natpryce.pearlfish.example.Operands {x: 1, y: 2}
+    - input: {x: 1, y: 2}
       name: simple add
       output: 3
-    - !!com.natpryce.pearlfish.Scenario
-      input: !!com.natpryce.pearlfish.example.Operands {x: 0, y: 2}
+    - input: {x: 0, y: 2}
       name: zero left
       output: 2
-
     ... etc ...
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
