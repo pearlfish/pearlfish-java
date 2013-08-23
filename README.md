@@ -3,6 +3,16 @@ Pearlfish for Java
 
 Specification-by-Example crossed with Approval Testing.
 
+Pearlfish may be useful for you if:
+
+ * You can change production code very rapidly, so that a document-first Specification by Example process
+   adds unhelpful overhead.
+ * or... Acceptance is qualitative rather than precise.
+ * or... The behaviour you want to capture involves a lot of numerical data, that can be understood
+   better through visualisation than text.
+ * or... You are working exploratively.
+ * or... two or more of the above.
+
 Overview
 --------
 
