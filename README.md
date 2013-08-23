@@ -50,6 +50,9 @@ Pearlfish requires:
 
  * Java 1.7 or above
 
+Pearlfish provides adaptors that integrate with [JUnit 4](http://www.junit.org). 
+You can use Pearlfish with other test frameworks by using the same extension points as the JUnit adaptor.
+
 To build from source, you need:
 
  * Ant 1.8 or above
@@ -65,10 +68,8 @@ Cd to the java/ directory and run `./build`.  JAR files will be created in the j
 A Short Example
 ---------------
 
-In this example will use Pearlfish and JUnit to write tests for an 
-[RPN calculator](http://en.wikipedia.org/wiki/Reverse_Polish_notation). Pearlfish provides a
-streamlined API for using it with JUnit 4. You can use Pearlfish with other test
-frameworks by writing a thin adaptor layer, using the same extension points as the JUnit adaptor.
+In this example will use Pearlfish and [JUnit](http://www.junit.org) to write tests for an 
+[RPN calculator](http://en.wikipedia.org/wiki/Reverse_Polish_notation). 
 
 We will start by doing approval testing and then generate Specification by Example documentation
 from the approval tests.
