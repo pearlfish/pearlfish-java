@@ -65,7 +65,8 @@ Cd to the java/ directory and run `./build`.  JAR files will be created in the j
 A Short Example
 ---------------
 
-In this example will use Pearlfish and JUnit to write tests for an RPN calculator. Pearlfish provides a
+In this example will use Pearlfish and JUnit to write tests for an 
+[RPN calculator](http://en.wikipedia.org/wiki/Reverse_Polish_notation). Pearlfish provides a
 streamlined API for using it with JUnit 4. You can use Pearlfish with other test
 frameworks by writing a thin adaptor layer, using the same extension points as the JUnit adaptor.
 
