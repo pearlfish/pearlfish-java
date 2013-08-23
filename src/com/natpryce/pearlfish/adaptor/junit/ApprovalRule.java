@@ -13,6 +13,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+/**
+ * A JUnit rule that adapts Pearlfish for use in JUnit tests.
+ *
+ * @param <T> the type of value to be approved
+ */
 public class ApprovalRule<T> implements TestRule {
     private final TestSpecific<? extends Format<? super T>> format;
     private final TestSpecific<? extends FileNamingConvention> namingConvention;
@@ -48,10 +53,28 @@ public class ApprovalRule<T> implements TestRule {
         reporter.register(FormatType.TEXT, textReporter);
     }
 
+    /**
+     * Check that <var>receivedContents</var> is approved.
+     *
+     * If the value is not as approved, the <var>differenceReporter</var> is notified and the received file
+     * is left on disk.
+     *
+     * If the value is approved, the received file is deleted.
+     *
+     * @param receivedContents the value to check
+     * @throws IOException the value cannot be written to the file system or the approved version cannot
+     *                     be read from the file system.
+     */
     public void check(T receivedContents) throws IOException {
         approver().check(receivedContents);
     }
 
+    /**
+     * Record the <var>receivedContents</var> as the approved version.
+     *
+     * @param receivedContents the value to record
+     * @throws IOException the value cannot be written to the file system
+     */
     public void recordAsApproved(T receivedContents) throws IOException {
         approver().recordAsApproved(receivedContents);
     }

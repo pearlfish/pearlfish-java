@@ -3,7 +3,7 @@ package com.natpryce.pearlfish;
 import java.io.File;
 
 /**
- * An object that knows where approved and received files for a test are located and how the are named.
+ * An object that knows where approved and received files for a test are located and how they are named.
  */
 public interface FileNamingConvention {
     /**

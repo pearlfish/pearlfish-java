@@ -1,18 +1,16 @@
 package com.natpryce.pearlfish.example;
 
 
-import com.natpryce.pearlfish.Scenario;
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
+import com.natpryce.pearlfish.results.Scenario;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.math.BigInteger;
 
-import static com.natpryce.pearlfish.Results.results;
-import static com.natpryce.pearlfish.Results.scenario;
-import static com.natpryce.pearlfish.Results.section;
 import static com.natpryce.pearlfish.formats.Formats.MARKDOWN;
+import static com.natpryce.pearlfish.results.Results.*;
 
 @SuppressWarnings("unchecked")
 public class BasicArithmeticTest {

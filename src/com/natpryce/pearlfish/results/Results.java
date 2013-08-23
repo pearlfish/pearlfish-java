@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish;
+package com.natpryce.pearlfish.results;
 
 import java.util.LinkedHashMap;
 import java.util.List;

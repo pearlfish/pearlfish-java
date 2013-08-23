@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish;
+package com.natpryce.pearlfish.results;
 
 import com.google.common.collect.ImmutableList;
 

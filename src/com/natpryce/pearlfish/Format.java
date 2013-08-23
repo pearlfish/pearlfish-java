@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * The format in which to record test results.
+ * A format in which to record test results of type <var>T</var>.
+ *
+ * A Format writes a value of type <var>T</var> to a byte stream. It reports the file extension
+ * that should be used for files in this format and the {@link FormatType} of the format, which
+ * is used to select an appropriate {@link DifferenceReporter}.
  *
  * @param <T> the type of object that can be formatted by this Format.
  */

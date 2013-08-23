@@ -1,4 +1,4 @@
-package com.natpryce.pearlfish;
+package com.natpryce.pearlfish.results;
 
 public class Scenario<I,O> {
     public final String name;

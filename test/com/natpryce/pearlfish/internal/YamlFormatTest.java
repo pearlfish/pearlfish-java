@@ -1,8 +1,8 @@
 package com.natpryce.pearlfish.internal;
 
-import com.natpryce.pearlfish.Results;
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
 import com.natpryce.pearlfish.formats.Formats;
+import com.natpryce.pearlfish.results.Results;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -10,8 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import static com.natpryce.pearlfish.Results.results;
-import static com.natpryce.pearlfish.Results.section;
+import static com.natpryce.pearlfish.results.Results.results;
+import static com.natpryce.pearlfish.results.Results.section;
 import static java.util.Arrays.asList;
 
 public class YamlFormatTest {

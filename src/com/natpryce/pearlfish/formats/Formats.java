@@ -14,6 +14,9 @@ import java.nio.charset.Charset;
 
 import static com.natpryce.pearlfish.FormatType.TEXT;
 
+/**
+ * Commonly used file formats.
+ */
 @SuppressWarnings("UnusedDeclaration")
 public class Formats {
     public static TestSpecific<Format<Object>> string(final String fileExtension, final FormatType fileType) {
