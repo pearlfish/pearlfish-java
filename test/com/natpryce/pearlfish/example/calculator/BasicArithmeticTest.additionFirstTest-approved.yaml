@@ -1,0 +1,13 @@
+results:
+- input: {x: 1, y: 2}
+  name: simple add
+  output: 3
+- input: {x: 0, y: 2}
+  name: zero left
+  output: 2
+- input: {x: 1, y: 0}
+  name: zero right
+  output: 1
+- input: {x: 0, y: 0}
+  name: zero both
+  output: 0

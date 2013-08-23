@@ -28,9 +28,9 @@ negative:
   name: both negative
   output: 36
 large:
-- input: {x: 2147483647, y: 2}
+- input: {x: 9223372036854775807, y: 2}
   name: large addition
-  output: 4294967294
-- input: {x: -2147483648, y: 2}
+  output: 18446744073709551614
+- input: {x: -9223372036854775808, y: 2}
   name: large negative numbers
-  output: -4294967296
+  output: -18446744073709551616

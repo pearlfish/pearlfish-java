@@ -156,6 +156,7 @@ To test the calculator with Pearlfish and JUnit:
     We can use this file to see the structure of the data that will be passed to our template.
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~yaml
+    results:
     - input: {x: 1, y: 2}
       name: simple add
       output: 3
@@ -165,7 +166,9 @@ To test the calculator with Pearlfish and JUnit:
     ... etc ...
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- 4. Now we can write a template to organise the data clearly in tables and add explanatory text.
+ 4. If we're just using approval testing for developer-focused regression testing, this might
+    be enough.  But if we want to document system behaviour for other (non-technical) stakeholders
+    we can write a template to organise the data clearly in tables and add explanatory text.
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Addition
@@ -182,7 +185,7 @@ To test the calculator with Pearlfish and JUnit:
 
     Pearlfish uses the [Mustache](http://mustache.github.io/) template language.
 
- 5. Rerunning the test generates the received file in Markdown format. Pearlfish ensures that
+ 5. Running the test again generates the received file in Markdown format. Pearlfish ensures that
     the tabular data is easy to read and differences are easy to see.
 
  6. As we implement the calculator we rerun the test.  When the results are correct, we
@@ -192,21 +195,24 @@ To test the calculator with Pearlfish and JUnit:
     more results we can use the Results class to group them into sections...
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java
-        approval.check(Results.results(
-                Results.section("basic",
-                        multiplication("simple multiplication", 2, 5),
-                        multiplication("zero left", 0, 2),
-                        multiplication("zero right", 1, 0),
-                        multiplication("zero both", 0, 0)),
-                Results.section("negative",
-                        multiplication("negative left", -4, 2),
-                        multiplication("negative right", 5, -4),
-                        multiplication("negative left and zero", -1, 0),
-                        multiplication("zero and negative right", 0, -6),
-                        multiplication("both negative", -4, -9)),
-                Results.section("large",
-                        multiplication("large addition", Integer.MAX_VALUE, 2),
-                        multiplication("large negative numbers", Integer.MIN_VALUE, 2))));
+    @Test
+    public void addition() throws IOException {
+        approval.check(results(
+                section("basic",
+                        addition("simple add", 1, 2),
+                        addition("zero left", 0, 2),
+                        addition("zero right", 1, 0),
+                        addition("zero both", 0, 0)),
+                section("negative",
+                        addition("negative left", -4, 2),
+                        addition("negative right", 5, -4),
+                        addition("negative left and zero", -1, 0),
+                        addition("zero and negative right", 0, -6),
+                        addition("both negative", -4, -9)),
+                section("large",
+                        addition("large addition", Long.MAX_VALUE, Long.MAX_VALUE),
+                        addition("large negative numbers", Long.MIN_VALUE, Long.MIN_VALUE))));
+    }
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ...and extend our template to match:

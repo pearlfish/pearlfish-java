@@ -14,11 +14,22 @@ import static com.natpryce.pearlfish.results.Results.*;
 
 @SuppressWarnings("unchecked")
 public class BasicArithmeticTest {
-    public @Rule ApprovalRule<Object> approval = new ApprovalRule<Object>("test", MARKDOWN);
+    @Rule
+    public ApprovalRule<Object> approval = new ApprovalRule<Object>("test", MARKDOWN);
 
-    /** This is the code that we are testing
+    /**
+     * This is the code that we are testing
      */
     Calculator calculator = new Calculator();
+
+    @Test
+    public void additionFirstTest() throws IOException {
+        approval.check(results(
+                addition("simple add", 1, 2),
+                addition("zero left", 0, 2),
+                addition("zero right", 1, 0),
+                addition("zero both", 0, 0)));
+    }
 
     @Test
     public void addition() throws IOException {
@@ -35,8 +46,8 @@ public class BasicArithmeticTest {
                         addition("zero and negative right", 0, -6),
                         addition("both negative", -4, -9)),
                 section("large",
-                        addition("large addition", Integer.MAX_VALUE, Integer.MAX_VALUE),
-                        addition("large negative numbers", Integer.MIN_VALUE, Integer.MIN_VALUE))));
+                        addition("large addition", Long.MAX_VALUE, Long.MAX_VALUE),
+                        addition("large negative numbers", Long.MIN_VALUE, Long.MIN_VALUE))));
     }
 
     @Test
@@ -54,18 +65,18 @@ public class BasicArithmeticTest {
                         multiplication("zero and negative right", 0, -6),
                         multiplication("both negative", -4, -9)),
                 section("large",
-                        multiplication("large addition", Integer.MAX_VALUE, 2),
-                        multiplication("large negative numbers", Integer.MIN_VALUE, 2))));
+                        multiplication("large addition", Long.MAX_VALUE, 2),
+                        multiplication("large negative numbers", Long.MIN_VALUE, 2))));
     }
 
-    private Scenario<Operands, BigInteger> addition(final String description, int x, int y) {
+    private Scenario<Operands, BigInteger> addition(final String description, long x, long y) {
         calculator.push(x);
         calculator.push(y);
         calculator.add();
         return scenario(description, new Operands(x, y), calculator.pop());
     }
 
-    private Scenario<Operands, BigInteger> multiplication(final String description, int x, int y) {
+    private Scenario<Operands, BigInteger> multiplication(final String description, long x, long y) {
         calculator.push(x);
         calculator.push(y);
         calculator.mul();
