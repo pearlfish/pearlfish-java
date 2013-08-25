@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class PrologEscaping {
     private static final Pattern numberPattern = Pattern.compile("-?[0-9]+(\\.[0-9]+)?");
-    private static final Pattern plainAtomPattern = Pattern.compile("[a-z][a-z_]*");
+    private static final Pattern plainAtomPattern = Pattern.compile("[a-z][a-zA-Z_]*");
 
     public static String toAtom(String raw) {
         if (isNumber(raw) || isPlainAtom(raw)) {
