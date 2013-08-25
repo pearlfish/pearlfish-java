@@ -7,11 +7,14 @@ import com.google.common.collect.TreeMultimap;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
 
+import static com.google.common.collect.Sets.newHashSet;
 import static com.google.common.collect.Sets.newTreeSet;
 
 public class FactBase {
     private List<Facts> allFacts = Lists.newArrayList();
+    private Set<String> builtinTypes = newHashSet("number", "nat", "int", "float");
 
     public Facts newFact(String name, String... types) {
         Facts facts = new Facts(name, types);
@@ -45,6 +48,9 @@ public class FactBase {
         for (Facts facts : allFacts) {
             facts.addTypeInformation(typeToAtom);
         }
+
+        typeToAtom.keySet().removeAll(builtinTypes);
+
         return typeToAtom;
     }
 
