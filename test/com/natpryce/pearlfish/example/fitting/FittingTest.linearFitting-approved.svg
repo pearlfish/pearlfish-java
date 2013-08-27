@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   width="1000"
+   height="1000"
+   version="1.1">
+  <defs>
+      <path id="datapoint"
+            style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+            d="M -2.5 -2.5 L 2.5 2.5 M -2.5 2.5 L 2.5 -2.5"/>
+  </defs>
+
+  <g transform="translate(0,1000) scale(1,-1)">
+    <g id="data">
+    
+      <use xlink:href="#datapoint" transform="translate(736.2619523367654,485.2237052936985)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(381.069114688967,268.21787388262703)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(1008.1351807739151,566.5452638241353)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(925.6614418132975,584.7871845964614)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(312.9508682515813,263.8908145916184)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(788.7809775917495,512.7590728686229)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(375.83275035674944,282.526795694317)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(804.9791625834221,502.57749062652897)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(736.9300964142926,472.80569551229553)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(552.6201516228635,399.9823142257253)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(632.5783623657418,412.3014287919049)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(152.42582750321785,178.28613356387987)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(964.1604432673785,594.4673421206575)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(219.88393761730487,230.28054548874326)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(888.3062588617063,543.9034744407825)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(651.72748175247,422.6849919390377)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(977.0296405957687,599.4867541497209)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(447.7198661393455,337.50112658029065)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(470.0358302542936,315.5696375814754)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(884.237647949478,556.1547758751055)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(425.6434816101521,299.31100411693376)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(967.3073293320673,590.4689993428135)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(525.3006278377252,359.9177231308835)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(799.0183184623816,528.1354948699258)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(260.9886941646294,265.87252702128905)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(1003.8419879214019,557.1363457037288)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(194.9301243439648,183.30537679743176)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(638.7863206042931,408.49344319906163)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(670.9399616764272,451.3660888784063)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(985.2234135020727,586.1226497290763)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(819.3930031000461,507.844613421319)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(478.16597554298346,337.58273417929)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(54.63366064540506,127.15774791936504)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(67.67722859956253,170.41849369001727)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(578.1950365354103,435.7508311535846)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(609.0527335506218,389.08321473333143)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(729.2102900532417,487.0121673761354)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(298.9286262809423,211.81606144336948)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(58.5598283055944,104.44476039971359)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(902.1949294368824,547.8493275032934)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(473.9278699975364,332.7949710068565)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(571.4281731713577,369.01972277703686)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(907.3982118059316,565.9643210387198)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(693.6690174038097,442.8849523877896)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(314.256694941132,258.08212685572613)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(379.3709907348935,305.37759139289767)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(674.6330521278309,402.3139962531021)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(910.8808315484446,541.3585754313701)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(97.03153565571895,191.56162395670225)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(909.0249088175592,526.6808226385901)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(217.3794128978468,229.89863511798322)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(46.494977187908404,102.65682133800277)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(713.1720924657957,450.87841740218306)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(22.188109085074704,101.30369039528186)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(425.65820941064874,293.20904939458273)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(348.46900631028734,316.9286378538043)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(528.9740634988918,373.92624536540563)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(23.813569166774517,95.1587259470959)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(709.8525474871268,497.326072239796)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(829.6559053831309,489.62211791420134)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(254.32117274161342,235.80060827246814)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(204.9906039734621,202.85529783227824)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(566.94408007601,371.9736439202768)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(725.635853583247,500.6794122060956)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(186.37818145481802,168.34142965511543)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(591.4182640165749,431.0781875292541)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(60.56774004503643,179.35074628063524)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(218.6327379841423,225.53746748044566)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(826.2402535815181,554.533444495137)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(264.4647609041124,231.2058565334236)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(87.5605167144336,164.629091290143)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(23.484621436926414,149.68635550514324)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(95.64801175119568,185.9806284657273)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(221.1936690601987,209.37356872156843)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(794.8900606265914,525.870664167052)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(40.451925096512156,98.99935662931875)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(601.1766644690914,385.71774277244793)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(675.8753279052593,447.04545376800274)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(706.8064980981391,452.55439979878946)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(338.7212573235206,291.77727359941207)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(438.1916943343823,321.7917349909389)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(517.0226423523263,346.2589515873148)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(127.76559637018269,182.3191999187792)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(27.607817227660107,113.16692292800974)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(510.1675698754103,327.06891540167874)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(363.59606629942584,275.9546646049814)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(796.1300081358537,492.45645482108273)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(762.6673816944601,485.82425739912367)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(775.8569659535818,479.48657308111774)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(3.1106640965852925,85.56840298032397)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(943.0817627034658,568.0931501777854)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(824.1754813027114,500.1031024947767)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(249.0228645241924,196.53683686816342)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(818.6352536018844,516.645252071374)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(545.3835544340509,368.28439759005545)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(573.429551285462,367.5146138893945)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(882.6980475488645,541.3059948099659)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(222.4563662640191,205.81174083135897)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(250.41418386717348,234.31406528600326)"/>
+    
+      <use xlink:href="#datapoint" transform="translate(696.5560274483273,458.39915327212054)"/>
+    
+    </g>
+
+    <path id="trend"
+       style="opacity:0.75;fill:#ff0000;stroke:#ff0000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0.0,105.35174444784221 L 1000.0,599.8414676883674" />
+  </g>
+</svg>
