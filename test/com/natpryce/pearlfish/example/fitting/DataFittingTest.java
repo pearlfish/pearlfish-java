@@ -21,11 +21,10 @@ public class DataFittingTest {
     final Random rng = new Random(1L);
 
     @Test
-    public void linearFitting() throws IOException {
+    public void fitLinearRandomData() throws IOException {
         final int minX = 0;
         final int maxX = 1000;
-        final Iterable<Point> dataset = new PolynomialDataSource(rng, new Polynomial(100,0.5), 50, minX, maxX);
-        final List<Point> points = take(100, dataset);
+        final List<Point> points = take(100, new PolynomialDataSource(rng, new Polynomial(100,0.5), 50, minX, maxX));
 
         // This is what we're testing...
         final Polynomial trendLine = DataFitting.linearFit(points);
@@ -41,11 +40,10 @@ public class DataFittingTest {
 
     @Test
     @Ignore("example failing SVG test")
-    public void quadraticFitting() throws IOException {
+    public void fitQuadraticRandomData() throws IOException {
         final int minX = 0;
         final int maxX = 1000;
-        final Iterable<Point> dataset = new PolynomialDataSource(rng, new Polynomial(250, -0.5, 0.00125, -0.00000005), 50, minX, maxX);
-        final List<Point> points = take(100, dataset);
+        final List<Point> points = take(100, new PolynomialDataSource(rng, new Polynomial(250, -0.5, 0.00125, -0.00000005), 50, minX, maxX));
 
         // This is what we're testing...
         final Polynomial trendLine = DataFitting.linearFit(points);

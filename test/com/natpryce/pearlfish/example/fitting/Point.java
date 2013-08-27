@@ -9,6 +9,11 @@ public class Point {
     }
 
     @Override
+    public String toString() {
+        return x + "," + y;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -28,4 +33,16 @@ public class Point {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
+
+    public static final DoubleFunction<Point> toX = new DoubleFunction<Point>() {
+        public double eval(Point p) {
+            return p.x;
+        }
+    };
+
+    public static final DoubleFunction<Point> toY = new DoubleFunction<Point>() {
+        public double eval(Point p) {
+            return p.y;
+        }
+    };
 }
