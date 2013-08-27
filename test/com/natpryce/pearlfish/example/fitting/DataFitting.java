@@ -6,6 +6,10 @@ import static com.natpryce.pearlfish.example.fitting.DoubleFunctions.*;
 
 public class DataFitting {
 
+    /**
+     * @param points the points to fit a trend line to
+     * @return a Polynomial of degree 1 (i.e. linear)
+     */
     public static Polynomial linearFit(List<Point> points) {
         double n = points.size();
         double sumX = sum(points, Point.toX);
