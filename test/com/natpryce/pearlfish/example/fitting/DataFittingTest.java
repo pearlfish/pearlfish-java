@@ -1,6 +1,7 @@
 package com.natpryce.pearlfish.example.fitting;
 
 import com.natpryce.pearlfish.adaptor.junit.ApprovalRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -23,11 +24,31 @@ public class DataFittingTest {
     public void linearFitting() throws IOException {
         final int minX = 0;
         final int maxX = 1000;
-        final Iterable<Point> dataset = new Jitter(rng, 50, new LinearDataSource(rng, new Line(100,0.5), minX, maxX));
+        final Iterable<Point> dataset = new PolynomialDataSource(rng, new Polynomial(100,0.5), 50, minX, maxX);
         final List<Point> points = take(100, dataset);
 
         // This is what we're testing...
-        final Line trendLine = DataFitting.linearFit(points);
+        final Polynomial trendLine = DataFitting.linearFit(points);
+
+        approval.check(new Object() {
+            public List<Point> data = points;
+            public Object trend = new Object() {
+                public Point p0 = trendLine.atX(minX);
+                public Point p1 = trendLine.atX(maxX);
+            };
+        });
+    }
+
+    @Test
+    @Ignore("example failing SVG test")
+    public void quadraticFitting() throws IOException {
+        final int minX = 0;
+        final int maxX = 1000;
+        final Iterable<Point> dataset = new PolynomialDataSource(rng, new Polynomial(250, -0.5, 0.00125, -0.00000005), 50, minX, maxX);
+        final List<Point> points = take(100, dataset);
+
+        // This is what we're testing...
+        final Polynomial trendLine = DataFitting.linearFit(points);
 
         approval.check(new Object() {
             public List<Point> data = points;
@@ -41,5 +62,4 @@ public class DataFittingTest {
     private static ArrayList<Point> take(int limitSize, Iterable<Point> dataset) {
         return newArrayList(limit(dataset, limitSize));
     }
-
 }
