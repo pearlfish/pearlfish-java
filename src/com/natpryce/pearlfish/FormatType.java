@@ -5,6 +5,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +33,8 @@ public class FormatType {
     private final FormatType baseTypeOrNull;
 
     private FormatType(String name, FormatType baseTypeOrNull) {
+        assert !name.isEmpty();
+
         this.name = name;
         this.baseTypeOrNull = baseTypeOrNull;
     }
@@ -85,5 +88,14 @@ public class FormatType {
             result = new FormatType(anotherName, result);
         }
         return result;
+    }
+
+    public static FormatType valueOf(String s) {
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException("invalid format type syntax: empty string");
+        }
+
+        String[] parts = s.split("\\.");
+        return FormatType.of(parts[0], Arrays.copyOfRange(parts, 1, parts.length));
     }
 }

@@ -2,8 +2,6 @@ package com.natpryce.pearlfish;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
@@ -25,20 +23,13 @@ public class FormatTypeTest {
     }
 
     @Test
-    public void hasStringForm() throws IOException {
-        assertThat(FormatType.of("text").toString(), equalTo("text"));
-        assertThat(FormatType.of("text", "json").toString(), equalTo("text.json"));
-        assertThat(FormatType.of("text", "json", "geojson").toString(), equalTo("text.json.geojson"));
-    }
-
-    @Test
-    public void canBeSpecialised() throws IOException {
+    public void canBeSpecialised() {
         assertThat(FormatType.of("text","json").specialised("geojson"), equalTo(FormatType.of("text","json", "geojson")));
         assertThat(FormatType.of("a").specialised("b", "c", "d"), equalTo(FormatType.of("a","b", "c", "d")));
     }
 
     @Test
-    public void canBeGeneralised() throws IOException {
+    public void canBeGeneralised() {
         assertTrue(FormatType.of("text", "json", "geojson").canBeGeneralised());
         assertThat(FormatType.of("text","json","geojson").generalised(), equalTo(FormatType.of("text","json")));
 
@@ -48,5 +39,27 @@ public class FormatTypeTest {
         assertFalse(FormatType.of("text").canBeGeneralised());
     }
 
+    @Test
+    public void hasStringForm() {
+        assertThat(FormatType.of("text").toString(), equalTo("text"));
+        assertThat(FormatType.of("text", "json").toString(), equalTo("text.json"));
+        assertThat(FormatType.of("text", "json", "geojson").toString(), equalTo("text.json.geojson"));
+    }
+
+    @Test
+    public void canBeParsed() {
+        assertCanRoundtrip(FormatType.of("text"));
+        assertCanRoundtrip(FormatType.of("text", "json"));
+        assertCanRoundtrip(FormatType.of("text", "json", "geojson"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void parsingRejectsInvalidTypeSyntax() {
+        FormatType.valueOf("");
+    }
+
+    private void assertCanRoundtrip(FormatType t) {
+        assertThat(FormatType.valueOf(t.toString()), equalTo(t));
+    }
 
 }
