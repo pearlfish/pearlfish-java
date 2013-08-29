@@ -7,9 +7,8 @@
     <property name="version" value="SNAPSHOT"/>
 
     <target name="package" depends="test">
-        <move file="${artifact.output.pearlfish.jar}/pearlfish.jar"
-              tofile="${artifact.output.pearlfish.jar}/pearlfish-${version}.jar"/>
-        <delete dir="${artifact.output.pearlfish.jar}" includes="*-sources.jar"/>
+        <move file="${artifact.output.pearlfish:jar}/pearlfish.jar"
+              tofile="${artifact.output.pearlfish:jar}/pearlfish-${version}.jar"/>
     </target>
 
     <target name="test" depends="all">

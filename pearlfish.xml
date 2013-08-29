@@ -63,33 +63,24 @@
   <!-- Project Libraries -->
   
   <path id="library.guava.classpath">
-    <fileset dir="${basedir}/libs/guava">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <pathelement location="${basedir}/libs/guava/guava-14.0.1.jar"/>
   </path>
   
   <path id="library.hamcrest.classpath">
-    <fileset dir="${basedir}/libs/hamcrest">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <pathelement location="${basedir}/libs/hamcrest/hamcrest-core-1.3.jar"/>
+    <pathelement location="${basedir}/libs/hamcrest/hamcrest-library-1.3.jar"/>
   </path>
   
   <path id="library.jmustache.classpath">
-    <fileset dir="${basedir}/libs/jmustache">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <pathelement location="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar"/>
   </path>
   
   <path id="library.junit.classpath">
-    <fileset dir="${basedir}/libs/junit">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <pathelement location="${basedir}/libs/junit/junit-4.11.jar"/>
   </path>
   
   <path id="library.snakeyaml.classpath">
-    <fileset dir="${basedir}/libs/snakeyaml">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <pathelement location="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar"/>
   </path>
   
   <!-- Modules -->
@@ -156,12 +147,14 @@
   <path id="pearlfish.module.sourcepath">
     <dirset dir="${module.pearlfish.basedir}">
       <include name="src"/>
+      <include name="unstable-src"/>
     </dirset>
   </path>
   
   <path id="pearlfish.module.test.sourcepath">
     <dirset dir="${module.pearlfish.basedir}">
       <include name="test"/>
+      <include name="unstable-test"/>
     </dirset>
   </path>
   
@@ -183,6 +176,10 @@
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
+      <fileset dir="${module.pearlfish.basedir}/unstable-src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
     </copy>
   </target>
   
@@ -201,6 +198,10 @@
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
+      <fileset dir="${module.pearlfish.basedir}/unstable-test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
     </copy>
   </target>
   
@@ -213,37 +214,35 @@
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.pearlfish, clean.artifact.pearlfish.jar" description="cleanup all"/>
+  <target name="clean" depends="clean.module.pearlfish" description="cleanup all"/>
   
   <target name="build.modules" depends="init, clean, compile.module.pearlfish" description="build all modules"/>
   
   <target name="init.artifacts">
     <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
-    <property name="artifact.output.pearlfish.jar" value="${basedir}/out"/>
+    <property name="artifact.output.pearlfish:jar" value="${basedir}/out/artifacts/pearlfish_jar"/>
     <mkdir dir="${artifacts.temp.dir}"/>
     <property name="temp.jar.path.pearlfish.jar" value="${artifacts.temp.dir}/pearlfish.jar"/>
   </target>
   
-  <target name="clean.artifact.pearlfish.jar" description="clean pearlfish.jar artifact output">
-    <delete dir="${artifact.output.pearlfish.jar}"/>
-  </target>
-  
-  <target name="artifact.pearlfish.jar" depends="init.artifacts, compile.module.pearlfish" description="Build &#39;pearlfish.jar&#39; artifact">
-    <mkdir dir="${artifact.output.pearlfish.jar}"/>
+  <target name="artifact.pearlfish:jar" depends="init.artifacts, compile.module.pearlfish" description="Build &#39;pearlfish:jar&#39; artifact">
+    <property name="artifact.temp.output.pearlfish:jar" value="${artifacts.temp.dir}/pearlfish_jar"/>
+    <mkdir dir="${artifact.temp.output.pearlfish:jar}"/>
     <jar destfile="${temp.jar.path.pearlfish.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
-      <zipfileset file="${basedir}/src/META-INF/MANIFEST.MF" prefix="META-INF"/>
+      <zipfileset src="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar"/>
+      <zipfileset src="${basedir}/libs/guava/guava-14.0.1.jar"/>
+      <zipfileset src="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar"/>
       <zipfileset dir="${pearlfish.output.dir}"/>
+      <zipfileset dir="${basedir}/src/META-INF"/>
     </jar>
-    <copy file="${temp.jar.path.pearlfish.jar}" tofile="${artifact.output.pearlfish.jar}/pearlfish.jar"/>
-    <copy file="${basedir}/libs/guava/guava-14.0.1.jar" tofile="${artifact.output.pearlfish.jar}/guava-14.0.1.jar"/>
-    <copy file="${basedir}/libs/guava/guava-14.0.1-sources.jar" tofile="${artifact.output.pearlfish.jar}/guava-14.0.1-sources.jar"/>
-    <copy file="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar" tofile="${artifact.output.pearlfish.jar}/jmustache-natpryce-1.9-SNAPSHOT.jar"/>
-    <copy file="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT-sources.jar" tofile="${artifact.output.pearlfish.jar}/jmustache-natpryce-1.9-SNAPSHOT-sources.jar"/>
-    <copy file="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar" tofile="${artifact.output.pearlfish.jar}/snakeyaml-1.11.jar"/>
-    <copy file="${basedir}/libs/snakeyaml/snakeyaml-1.11-sources.jar" tofile="${artifact.output.pearlfish.jar}/snakeyaml-1.11-sources.jar"/>
+    <copy file="${temp.jar.path.pearlfish.jar}" tofile="${artifact.temp.output.pearlfish:jar}/pearlfish.jar"/>
   </target>
   
-  <target name="build.all.artifacts" depends="artifact.pearlfish.jar" description="Build all artifacts">
+  <target name="build.all.artifacts" depends="artifact.pearlfish:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.pearlfish:jar}"/>
+    <copy todir="${artifact.output.pearlfish:jar}">
+      <fileset dir="${artifact.temp.output.pearlfish:jar}"/>
+    </copy>
     
     <!-- Delete temporary files -->
     <delete dir="${artifacts.temp.dir}"/>

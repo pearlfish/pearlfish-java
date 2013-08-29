@@ -1,16 +1,12 @@
 <component name="ArtifactManager">
-  <artifact build-on-make="true" name="pearlfish.jar">
-    <output-path>$PROJECT_DIR$/out/</output-path>
-    <root id="root">
-      <element id="archive" name="pearlfish.jar">
-        <element id="directory" name="META-INF">
-          <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-        </element>
-        <element id="module-output" name="pearlfish" />
-      </element>
-      <element id="library" level="project" name="guava" />
-      <element id="library" level="project" name="jmustache" />
-      <element id="library" level="project" name="snakeyaml" />
+  <artifact type="jar" name="pearlfish:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/pearlfish_jar</output-path>
+    <root id="archive" name="pearlfish.jar">
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/guava/guava-14.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/snakeyaml/snakeyaml-1.11.jar" path-in-jar="/" />
+      <element id="module-output" name="pearlfish" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/META-INF" />
     </root>
   </artifact>
 </component>
