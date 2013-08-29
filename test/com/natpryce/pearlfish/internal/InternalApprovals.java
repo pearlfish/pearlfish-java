@@ -9,4 +9,8 @@ public class InternalApprovals {
     public static <T> ApprovalRule<T> selfTestApprover(TestSpecific<? extends Format<? super T>> format) {
         return new ApprovalRule<T>(format, NextToSourceNamingConvention.forSourceDirectory("test"));
     }
+
+    public static <T> ApprovalRule<T> unstableSelfTestApprover(TestSpecific<? extends Format<? super T>> format) {
+        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forSourceDirectory("unstable-test"));
+    }
 }
