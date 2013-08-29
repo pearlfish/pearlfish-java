@@ -21,7 +21,7 @@ public class PrologFormatTest {
 
         Relation female = facts.newFact("female", "person");
         female.declare(true, "Alice");
-        female.declare(false, "Bbob");
+        female.declare(false, "Bob");
         female.declare(true, "Carol");
         female.declare(false, "Dave");
         female.declare(true, "Eve");

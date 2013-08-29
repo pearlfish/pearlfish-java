@@ -1,13 +1,11 @@
 <component name="libraryTable">
   <library name="jmustache">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/libs/jmustache" />
+      <root url="jar://$PROJECT_DIR$/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/libs/jmustache" />
+      <root url="jar://$PROJECT_DIR$/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT-sources.jar!/" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/libs/jmustache" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/libs/jmustache" recursive="false" type="SOURCES" />
   </library>
 </component>

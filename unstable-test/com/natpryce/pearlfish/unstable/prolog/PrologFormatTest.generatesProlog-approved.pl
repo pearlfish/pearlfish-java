@@ -1,21 +1,21 @@
 level(level_0).
-level(level_4).
 level(level_1).
+level(level_4).
 
 person('Alice').
-person('Eve').
-person('Dave').
-person('Bbob').
+person('Bob').
 person('Carol').
+person('Dave').
+person('Eve').
 
-room(livingRoom).
 room(kitchen).
+room(livingRoom).
 
 
 :- modeh(1, female(+person))?
 
 female('Alice').
-:- female('Bbob').
+:- female('Bob').
 female('Carol').
 :- female('Dave').
 female('Eve').
