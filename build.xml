@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pearlfish" default="package">
+<project name="pearlfish" default="all">
     <import file="pearlfish.xml"/>
 
     <property name="report.dir" value="${module.pearlfish.basedir}/out/reports"/>
 
     <property name="version" value="SNAPSHOT"/>
 
-    <target name="package" depends="test">
-        <move file="${artifact.output.pearlfish:jar}/pearlfish.jar"
-              tofile="${artifact.output.pearlfish:jar}/pearlfish-${version}.jar"/>
+    <target name="package" depends="package.library, package.source, package.dependencies, package.library.standalone"/>
+
+    <target name="package.library.standalone" depends="package.library">
+        <jar destfile="out/pearlfish-${version}-standalone.jar">
+          <zipfileset src="${basedir}/libs/jmustache/jmustache-natpryce-1.9-SNAPSHOT.jar"/>
+          <zipfileset src="${basedir}/libs/guava/guava-14.0.1.jar"/>
+          <zipfileset src="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar"/>
+          <zipfileset src="out/pearlfish-${version}.jar"/>
+        </jar>
+    </target>
+
+    <target name="package.dependencies">
+        <copy todir="out" flatten="true">
+            <fileset dir="${basedir}/libs">
+                <include name="jmustache/*.jar"/>
+                <include name="guava/*.jar"/>
+                <include name="snakeyaml/*.jar"/>
+                <exclude name="**/*-source.jar"/>
+                <exclude name="**/*-sources.jar"/>
+                <exclude name="**/*-src.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="package.library" depends="test">
+        <jar destfile="out/pearlfish-${version}.jar">
+          <zipfileset dir="${pearlfish.output.dir}" excludes="**/unstable/**"/>
+          <zipfileset dir="${basedir}/src/" includes="META-INF/**"/>
+        </jar>
+    </target>
+
+    <target name="package.source" depends="test">
+        <jar destfile="out/pearlfish-${version}-source.jar">
+            <zipfileset dir="src" excludes="**/unstable/**"/>
+        </jar>
     </target>
 
     <target name="test" depends="all">
@@ -45,4 +77,6 @@
     <target name="real-clean">
         <delete dir="out"/>
     </target>
+
+    <target name="again" depends="real-clean, package"/>
 </project>
