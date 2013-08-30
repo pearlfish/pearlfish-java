@@ -5,7 +5,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/libs/guava/guava-14.0.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/guava/guava-14.0.1-src.jar!/" />
     </SOURCES>
   </library>
 </component>
