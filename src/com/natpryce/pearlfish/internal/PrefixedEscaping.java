@@ -1,10 +1,10 @@
 package com.natpryce.pearlfish.internal;
 
-import com.samskivert.mustache.Escaping;
+import com.natpryce.pearlfish.formats.TextFilter;
 
 import java.util.Arrays;
 
-public class PrefixedEscaping implements Escaping {
+public class PrefixedEscaping implements TextFilter {
     private char escapeChar;
     private final char[] charsToEscape;
 
@@ -16,7 +16,7 @@ public class PrefixedEscaping implements Escaping {
     }
 
     @Override
-    public String escape(String raw) {
+    public String filter(String raw) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < raw.length(); i++) {
             char c = raw.charAt(i);

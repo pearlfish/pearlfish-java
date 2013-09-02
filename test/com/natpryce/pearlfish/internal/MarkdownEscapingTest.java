@@ -29,7 +29,7 @@ public class MarkdownEscapingTest {
         };
 
         for (String example : examples) {
-            transforms.put(example, escaping.escape(example));
+            transforms.put(example, escaping.filter(example));
         }
 
         approvals.check(Joiner.on("\n").withKeyValueSeparator(" -> ").join(transforms));

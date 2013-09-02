@@ -22,6 +22,7 @@
 
             <rule pattern="com.google.common.**" result="com.natpryce.pearlfish.internal.google.common.@1"/>
             <rule pattern="org.yaml.snakeyaml.**" result="com.natpryce.pearlfish.internal.snakeyaml.@1"/>
+            <rule pattern="com.samskivert.mustache.**" result="com.natpryce.pearlfish.internal.mustache.@1"/>
         </jarjar>
     </target>
 

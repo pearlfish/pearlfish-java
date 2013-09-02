@@ -3,9 +3,7 @@ package com.natpryce.pearlfish.formats;
 import com.natpryce.pearlfish.FormatType;
 import com.natpryce.pearlfish.internal.MarkdownEscaping;
 import com.natpryce.pearlfish.internal.MarkdownTableLayoutFilter;
-import com.samskivert.mustache.Escaping;
-import com.samskivert.mustache.formats.HtmlEscaping;
-import com.samskivert.mustache.formats.NoEscaping;
+import com.natpryce.pearlfish.internal.XmlEscaping;
 
 import java.nio.charset.Charset;
 
@@ -22,7 +20,7 @@ import static com.natpryce.pearlfish.FormatType.TEXT;
  */
 public class TemplateFormats {
     public static final TestSpecificTemplatedTextFormat PLAIN_TEXT =
-            create(".txt", TEXT, new NoEscaping(), TextFilter.IDENTITY);
+            create(".txt", TEXT, TextFilter.IDENTITY, TextFilter.IDENTITY);
 
     public static final TestSpecificTemplatedTextFormat MARKDOWN =
             create(".md", TEXT.specialised("markdown"), new MarkdownEscaping(), new MarkdownTableLayoutFilter());
@@ -30,10 +28,11 @@ public class TemplateFormats {
     public static final TestSpecificTemplatedTextFormat XML = xml(".xml", FormatType.XML);
 
     public static TestSpecificTemplatedTextFormat xml(final String fileExtension, final FormatType formatType) {
-        return create(fileExtension, formatType, new HtmlEscaping(), TextFilter.IDENTITY);
+        return create(fileExtension, formatType, new XmlEscaping(), TextFilter.IDENTITY);
     }
 
-    private static TestSpecificTemplatedTextFormat create(String fileExtension, FormatType formatType, Escaping escaping, TextFilter postTemplateFilter) {
+    private static TestSpecificTemplatedTextFormat create(String fileExtension, FormatType formatType, TextFilter escaping, TextFilter postTemplateFilter) {
         return new TestSpecificTemplatedTextFormat(fileExtension, formatType, Charset.defaultCharset(), escaping, postTemplateFilter);
     }
+
 }
