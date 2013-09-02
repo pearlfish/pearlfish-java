@@ -1,4 +1,14 @@
 #!/bin/sh
 set -e
 
-ant -Dversion=`git describe --always --match v* --dirty` "$@"
+GIT_VERSION=`git describe --always --match v* --dirty`
+
+case $GIT_VERSION in
+	v*) VERSION=`echo $GIT_VERSION | cut -c 2-`
+	    ;;
+	*)  VERSION=$GIT_VERSION
+	    ;;
+esac
+
+ant -Dversion="$VERSION" "$@"
+
