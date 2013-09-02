@@ -198,6 +198,20 @@ To test the calculator with Pearlfish and JUnit:
  5. Running the test again generates the received file in Markdown format. Pearlfish ensures that
     the tabular data is easy to read and differences are easy to see.
 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Addition
+    ========
+
+    The calculator performs basic addition.
+
+    | Scenario     | X            | Y            | X + Y      |
+    |--------------|-------------:|-------------:|-----------:|
+    | simple add   | 1            | 2            | 3          |
+    | zero left    | 0            | 2            | 2          |
+    | zero right   | 1            | 0            | 1          |
+    | zero both    | 0            | 0            | 0          |
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
  6. As we implement the calculator we rerun the test.  When the results are correct, we
     approve the received file.  From now on, it acts as a regression test.
 
