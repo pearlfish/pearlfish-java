@@ -20,8 +20,6 @@ ledCtl('OFF').
 ledCtl('ON').
 
 
-:- modeh(1, translateDeviceEvent(+device, +event, +led, +ledCtl, +boolean, +boolean))?
-
 :- translateDeviceEvent('POWER', 'CONNECTED', _, _, _, _).
 translateDeviceEvent('POWER', 'DISCONNECTED', 0, 'FLASH', yes, yes).
 translateDeviceEvent('POWER', 'FAILED', 0, 'FLASH', yes, yes).

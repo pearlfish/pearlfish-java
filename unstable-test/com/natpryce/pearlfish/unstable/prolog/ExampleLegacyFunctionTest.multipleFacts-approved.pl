@@ -17,8 +17,6 @@ ledCtl('OFF').
 ledCtl('ON').
 
 
-:- modeh(1, ledId(+device, +event, +led))?
-
 ledId('POWER', 'DISCONNECTED', led_0).
 ledId('POWER', 'FAILED', led_0).
 ledId('NETWORK', 'CONNECTED', led_1).
@@ -30,8 +28,6 @@ ledId('BLUETOOTH', 'FAILED', led_2).
 ledId('HDMI', 'CONNECTED', led_3).
 ledId('HDMI', 'DISCONNECTED', led_3).
 ledId('HDMI', 'FAILED', led_3).
-
-:- modeh(1, ledAction(+device, +event, +ledCtl))?
 
 ledAction('POWER', 'DISCONNECTED', 'FLASH').
 ledAction('POWER', 'FAILED', 'FLASH').
@@ -45,8 +41,6 @@ ledAction('HDMI', 'CONNECTED', 'ON').
 ledAction('HDMI', 'DISCONNECTED', 'OFF').
 ledAction('HDMI', 'FAILED', 'FLASH').
 
-:- modeh(1, beep(+device, +event))?
-
 beep('POWER', 'DISCONNECTED').
 beep('POWER', 'FAILED').
 :- beep('NETWORK', 'CONNECTED').
@@ -58,8 +52,6 @@ beep('BLUETOOTH', 'FAILED').
 :- beep('HDMI', 'CONNECTED').
 :- beep('HDMI', 'DISCONNECTED').
 beep('HDMI', 'FAILED').
-
-:- modeh(1, shutdown(+device, +event))?
 
 shutdown('POWER', 'DISCONNECTED').
 shutdown('POWER', 'FAILED').

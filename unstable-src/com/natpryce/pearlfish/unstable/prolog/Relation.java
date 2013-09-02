@@ -1,6 +1,5 @@
 package com.natpryce.pearlfish.unstable.prolog;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
@@ -58,13 +57,6 @@ public class Relation implements Iterable<Fact> {
     }
 
     public void writePrologSyntax(PrintWriter writer) throws IOException {
-        writer.print(":- modeh(1, ");
-        writer.print(name);
-        writer.print("(+");
-        writer.print(Joiner.on(", +").join(types));
-        writer.println("))?");
-        writer.println();
-
         for (Fact fact : facts) {
             fact.writePrologSyntax(writer, name);
         }
