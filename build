@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-GIT_VERSION=`git describe --always --match v* --dirty`
+GIT_VERSION=`git describe --tags --always --match v* --dirty`
 
 case $GIT_VERSION in
 	v*) VERSION=`echo $GIT_VERSION | cut -c 2-`
@@ -9,6 +9,8 @@ case $GIT_VERSION in
 	*)  VERSION=$GIT_VERSION
 	    ;;
 esac
+
+echo building version $VERSION
 
 ant -Dversion="$VERSION" "$@"
 
