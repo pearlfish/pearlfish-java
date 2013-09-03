@@ -48,19 +48,19 @@ public class Formats {
      * Formats values as Markdown documents using a template and writes the results to a file with the ".md"
      * extension.  If there is no template, it falls back to using the {@link Formats#YAML} formatter.
      */
-    public static final TestSpecific<Format<Object>> MARKDOWN = TemplateFormats.MARKDOWN.ifNoTemplate(YAML);
+    public static final TestSpecific<Format<Object>> MARKDOWN = safe(TemplateFormats.MARKDOWN);
 
     /**
      * Formats values as plain text documents using a template and writes the results to a file with the ".txt"
      * extension.  If there is no template, it falls back to using the {@link Formats#YAML} formatter.
      */
-    public static final TestSpecific<Format<Object>> PLAIN_TEXT = TemplateFormats.PLAIN_TEXT.ifNoTemplate(YAML);
+    public static final TestSpecific<Format<Object>> PLAIN_TEXT = safe(TemplateFormats.PLAIN_TEXT);
 
     /**
      * Formats values as Markdown documents using a template and writes the results to a file with the ".xml"
      * extension.  If there is no template, it falls back to using the {@link Formats#YAML} formatter.
      */
-    public static final TestSpecific<Format<Object>> XML = TemplateFormats.XML.ifNoTemplate(YAML);
+    public static final TestSpecific<Format<Object>> XML = safe(TemplateFormats.XML);
 
     /**
      * Formats values as XML documents using a template and writes the results to a file with the given
@@ -79,6 +79,9 @@ public class Formats {
      * Formats values as XML SVG images using a template and writes the results to a file with the ".svg"
      * extension.  If there is no template, it falls back to using the {@link Formats#YAML} formatter.
      */
-    public static final TestSpecific<Format<Object>> SVG = xml(".svg", FormatType.XML.specialised("svg"));
+    public static final TestSpecific<Format<Object>> SVG = safe(TemplateFormats.SVG);
 
+    private static TestSpecific<Format<Object>> safe(TestSpecificTemplatedTextFormat baseFormat) {
+        return baseFormat.ifNoTemplate(YAML);
+    }
 }

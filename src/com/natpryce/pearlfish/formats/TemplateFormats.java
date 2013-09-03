@@ -27,6 +27,8 @@ public class TemplateFormats {
 
     public static final TestSpecificTemplatedTextFormat XML = xml(".xml", FormatType.XML);
 
+    public static final TestSpecificTemplatedTextFormat SVG = xml(".svg", FormatType.XML.specialised("svg"));
+
     public static TestSpecificTemplatedTextFormat xml(final String fileExtension, final FormatType formatType) {
         return create(fileExtension, formatType, new XmlEscaping(), TextFilter.IDENTITY);
     }
@@ -34,5 +36,4 @@ public class TemplateFormats {
     private static TestSpecificTemplatedTextFormat create(String fileExtension, FormatType formatType, TextFilter escaping, TextFilter postTemplateFilter) {
         return new TestSpecificTemplatedTextFormat(fileExtension, formatType, Charset.defaultCharset(), escaping, postTemplateFilter);
     }
-
 }
