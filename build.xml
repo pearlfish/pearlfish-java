@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pearlfish" default="all">
+<project name="pearlfish" default="again">
     <import file="pearlfish.xml"/>
 
     <property name="report.dir" value="${module.pearlfish.basedir}/out/reports"/>
