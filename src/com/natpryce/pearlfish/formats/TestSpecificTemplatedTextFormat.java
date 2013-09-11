@@ -53,6 +53,10 @@ public class TestSpecificTemplatedTextFormat implements TestSpecific<TemplatedTe
         };
     }
 
+    public TestSpecific<TemplatedTextFormat> withTemplateFile(String path) {
+        return withTemplate(new File(path));
+    }
+
     public TestSpecific<TemplatedTextFormat> withTemplate(final File file) {
         try {
             final URL templateURL = file.toURI().toURL();
