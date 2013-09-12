@@ -1,0 +1,5 @@
+fixedName: {approvedFileName: docs/example.txt, receivedFileName: docs/example-received.txt}
+nextToSource: {approvedFileName: example/com/natpryce/pearlfish/naming/NamingConventionsTest.exampleTest-approved.txt,
+  receivedFileName: example/com/natpryce/pearlfish/naming/NamingConventionsTest.exampleTest-received.txt}
+singleDir: {approvedFileName: example/com.natpryce.pearlfish.naming.NamingConventionsTest.exampleTest-approved.txt,
+  receivedFileName: example/com.natpryce.pearlfish.naming.NamingConventionsTest.exampleTest-received.txt}

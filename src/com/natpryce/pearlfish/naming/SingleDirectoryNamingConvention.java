@@ -6,8 +6,8 @@ import com.natpryce.pearlfish.internal.PerTestFileNamingConvention;
 
 import java.io.File;
 
-public class NextToSourceNamingConvention extends PerTestFileNamingConvention {
-    public NextToSourceNamingConvention(File dir, Class<?> testClass, String testName) {
+public class SingleDirectoryNamingConvention extends PerTestFileNamingConvention {
+    public SingleDirectoryNamingConvention(File dir, Class<?> testClass, String testName) {
         super(dir, testClass, testName);
     }
 
@@ -19,13 +19,13 @@ public class NextToSourceNamingConvention extends PerTestFileNamingConvention {
         return new TestSpecific<FileNamingConvention>() {
             @Override
             public FileNamingConvention forTest(Class<?> testClass, String testName) {
-                return new NextToSourceNamingConvention(sourceDir, testClass, testName);
+                return new SingleDirectoryNamingConvention(sourceDir, testClass, testName);
             }
         };
     }
 
     @Override
     protected File fileFor(File directory, Class<?> testClass, String testName, String type, String fileExtension) {
-        return new File(directory, testClass.getName().replace(".", File.separator) + "." + testName + "-" + type + fileExtension);
+        return new File(directory, testClass.getName() + "." + testName + "-" + type + fileExtension);
     }
 }

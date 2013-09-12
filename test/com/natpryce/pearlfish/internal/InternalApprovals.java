@@ -7,10 +7,10 @@ import com.natpryce.pearlfish.naming.NextToSourceNamingConvention;
 
 public class InternalApprovals {
     public static <T> ApprovalRule<T> selfTestApprover(TestSpecific<? extends Format<? super T>> format) {
-        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forSourceDirectory("test"));
+        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forDirectory("test"));
     }
 
     public static <T> ApprovalRule<T> unstableSelfTestApprover(TestSpecific<? extends Format<? super T>> format) {
-        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forSourceDirectory("unstable-test"));
+        return new ApprovalRule<T>(format, NextToSourceNamingConvention.forDirectory("unstable-test"));
     }
 }

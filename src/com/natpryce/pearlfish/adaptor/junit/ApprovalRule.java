@@ -27,7 +27,7 @@ public class ApprovalRule<T> implements TestRule {
     private Approver<T> approver = null;
 
     public ApprovalRule(String sourceDir, TestSpecific<? extends Format<? super T>> format) {
-        this(format, NextToSourceNamingConvention.forSourceDirectory(sourceDir));
+        this(format, NextToSourceNamingConvention.forDirectory(sourceDir));
     }
 
     public ApprovalRule(TestSpecific<? extends Format<? super T>> format,
