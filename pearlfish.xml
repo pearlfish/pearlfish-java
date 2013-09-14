@@ -147,14 +147,12 @@
   <path id="pearlfish.module.sourcepath">
     <dirset dir="${module.pearlfish.basedir}">
       <include name="src"/>
-      <include name="unstable-src"/>
     </dirset>
   </path>
   
   <path id="pearlfish.module.test.sourcepath">
     <dirset dir="${module.pearlfish.basedir}">
       <include name="test"/>
-      <include name="unstable-test"/>
     </dirset>
   </path>
   
@@ -176,10 +174,6 @@
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.pearlfish.basedir}/unstable-src">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
     </copy>
   </target>
   
@@ -195,10 +189,6 @@
     
     <copy todir="${pearlfish.testoutput.dir}">
       <fileset dir="${module.pearlfish.basedir}/test">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-      <fileset dir="${module.pearlfish.basedir}/unstable-test">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
