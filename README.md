@@ -273,7 +273,7 @@ To test the calculator with Pearlfish and JUnit:
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
 
-The full code of example is [included in the Pearlfish tests](test/com/natpryce/pearlfish/example/calculator/), including [the Markdown document generated from the final template above](blob/master/test/com/natpryce/pearlfish/example/calculator/BasicArithmeticTest.addition-approved.md).
+The full code of example is [included in the Pearlfish tests](test/com/natpryce/pearlfish/example/calculator/), including [the Markdown document generated from the final template above](test/com/natpryce/pearlfish/example/calculator/BasicArithmeticTest.addition-approved.md).
 
 
 More Information
