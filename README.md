@@ -272,7 +272,7 @@ To test the calculator with Pearlfish and JUnit:
     {{/large}}
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The complete example is [included in the Pearlfish tests](test/com/natpryce/pearlfish/example/).
+The complete example is [included in the Pearlfish tests](test/com/natpryce/pearlfish/example/calculator/).
 
 
 More Information
