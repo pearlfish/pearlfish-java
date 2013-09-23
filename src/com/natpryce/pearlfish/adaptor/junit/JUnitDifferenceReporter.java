@@ -9,7 +9,8 @@ import java.io.IOException;
 public abstract class JUnitDifferenceReporter implements DifferenceReporter {
     @Override
     public void reportDifference(FormatType formatType, File approvedFile, File receivedFile)
-            throws IOException {
+            throws IOException
+    {
         String receivedContents = loadContents(receivedFile);
         String approvedContents;
         String message;
