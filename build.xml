@@ -20,9 +20,9 @@
             <zipfileset src="${basedir}/libs/snakeyaml/snakeyaml-1.11.jar" excludes="META-INF/**"/>
             <zipfileset src="out/pearlfish-${version}.jar"/>
 
-            <rule pattern="com.google.common.**" result="com.natpryce.pearlfish.internal.google.common.@1"/>
-            <rule pattern="org.yaml.snakeyaml.**" result="com.natpryce.pearlfish.internal.snakeyaml.@1"/>
-            <rule pattern="com.samskivert.mustache.**" result="com.natpryce.pearlfish.internal.mustache.@1"/>
+            <rule pattern="com.google.common.**" result="info.pearlfish.internal.google.common.@1"/>
+            <rule pattern="org.yaml.snakeyaml.**" result="info.pearlfish.internal.snakeyaml.@1"/>
+            <rule pattern="com.samskivert.mustache.**" result="info.pearlfish.internal.mustache.@1"/>
         </jarjar>
     </target>
 
@@ -77,6 +77,8 @@
             </fileset>
             <report format="frames" todir="${report.dir}/html"/>
         </junitreport>
+
+        <echo message="test reports: file://${report.dir}/html/index.html"/>
 
         <fail if="${tests.failed}"/>
     </target>
