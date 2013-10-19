@@ -23,8 +23,14 @@ public class NamingConventionsTest {
                     NextToSourceNamingConvention.forDirectory("example").forTest(testClass, "exampleTest"), ".txt");
             public Object singleDir = sample(
                     SingleDirectoryNamingConvention.forDirectory("example").forTest(testClass, "exampleTest"), ".txt");
-            public Object fixedName = sample(
+            public Object fixedNameRoot = sample(
                     new NamedFileNamingConvention("docs/example"), ".txt");
+            public Object fixedNameRoots = sample(
+                    new NamedFileNamingConvention("docs/approved-example", "docs/generated-example"), ".txt");
+            public Object fixedNameWithExtension = sample(
+                    new NamedFileNamingConvention("docs/example.foo"), ".txt");
+            public Object fixedNamesWithExtension = sample(
+                    new NamedFileNamingConvention("docs/approved-example.foo", "docs/generated-example.foo"), ".txt");
         });
     }
 

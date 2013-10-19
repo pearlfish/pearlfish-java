@@ -1,4 +1,7 @@
-fixedName: {approvedFileName: docs/example.txt, receivedFileName: docs/example-received.txt}
+fixedNameRoot: {approvedFileName: docs/example.txt, receivedFileName: docs/example-received.txt}
+fixedNameRoots: {approvedFileName: docs/approved-example.txt, receivedFileName: docs/generated-example.txt}
+fixedNameWithExtension: {approvedFileName: docs/example.foo, receivedFileName: docs/example-received.foo}
+fixedNamesWithExtension: {approvedFileName: docs/approved-example.foo, receivedFileName: docs/generated-example.foo}
 nextToSource: {approvedFileName: example/info/pearlfish/naming/NamingConventionsTest.exampleTest-approved.txt,
   receivedFileName: example/info/pearlfish/naming/NamingConventionsTest.exampleTest-received.txt}
 singleDir: {approvedFileName: example/info.pearlfish.naming.NamingConventionsTest.exampleTest-approved.txt,
