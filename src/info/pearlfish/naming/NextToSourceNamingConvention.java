@@ -6,6 +6,10 @@ import info.pearlfish.internal.PerTestFileNamingConvention;
 
 import java.io.File;
 
+/**
+ * Writes the results of a test into a file named after the test class and method, in a nested directory
+ * that follows the package structure.
+ */
 public class NextToSourceNamingConvention extends PerTestFileNamingConvention {
     public NextToSourceNamingConvention(File dir, Class<?> testClass, String testName) {
         super(dir, testClass, testName);

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pearlfish" default="again">
+<project name="Pearlfish" default="again">
     <import file="pearlfish.xml"/>
 
     <property name="report.dir" value="${module.pearlfish.basedir}/out/reports"/>
 
     <property name="version" value="SNAPSHOT"/>
 
-    <target name="package" depends="package.library, package.source, package.dependencies, package.library.standalone"/>
+    <target name="package"
+            depends="package.library,
+                     package.source,
+                     package.dependencies,
+                     package.library.standalone,
+                     package.javadoc"/>
 
     <target name="taskdef.jarjar">
         <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask"
@@ -48,6 +53,23 @@
         <jar destfile="out/pearlfish-${version}-sources.jar">
             <zipfileset dir="src" excludes="**/unstable/**"/>
         </jar>
+    </target>
+
+    <target name="package.javadoc" depends="javadoc">
+        <jar destfile="out/pearlfish-${version}-javadoc.jar">
+            <zipfileset dir="out/javadoc"/>
+        </jar>
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="out/javadoc"/>
+        <javadoc sourcepath="src"
+                 destdir="out/javadoc"
+                 packagenames="info.pearlfish.*"
+                 excludepackagenames="info.pearlfish.internal.*, info.pearlfish.unstable.*"
+                 classpathref="pearlfish.module.production.classpath"
+                 doctitle="Pearlfish"
+                 windowtitle="Pearlfish"/>
     </target>
 
     <target name="test" depends="all">

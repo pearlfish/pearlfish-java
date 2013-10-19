@@ -12,6 +12,10 @@ import static info.pearlfish.FormatType.TEXT;
 
 /**
  * Commonly used file formats.
+ *
+ * Templated formats defined by this class fall back to {@link #YAML} format if no template can be found.
+ * If you want a templated format that will fail when no template can be found, use those defined by the
+ * {@link TemplateFormats} class.
  */
 @SuppressWarnings("UnusedDeclaration")
 public class Formats {
@@ -37,6 +41,12 @@ public class Formats {
      */
     public static final TestSpecific<Format<Object>> STRING = string(".txt", TEXT);
 
+    /**
+     * Serialises objects to YAML format to a text file with the ".yaml" file extension,
+     *
+     * The serialised YAML is intended only for output.  It cannot be deserialised into objects again. It does
+     * not contain any class names, so it is possible to rename or move classes without changing output.
+     */
     public static final TestSpecific<Format<Object>> YAML = new TestSpecific<Format<Object>>() {
         @Override
         public Format<Object> forTest(Class<?> testClass, String testName) {

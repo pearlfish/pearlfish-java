@@ -6,6 +6,9 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 
+/**
+ * Convenience functions for identifying and grouping results.
+ */
 public class Results {
     public static <T> Section<T> section(String name, T... results) {
         return new Section<T>(name, asList(results));

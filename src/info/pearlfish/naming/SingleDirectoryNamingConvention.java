@@ -6,6 +6,9 @@ import info.pearlfish.internal.PerTestFileNamingConvention;
 
 import java.io.File;
 
+/**
+ * Writes the results of a test into a file named after the test package, class and method.
+ */
 public class SingleDirectoryNamingConvention extends PerTestFileNamingConvention {
     public SingleDirectoryNamingConvention(File dir, Class<?> testClass, String testName) {
         super(dir, testClass, testName);
