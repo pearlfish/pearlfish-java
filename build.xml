@@ -69,7 +69,8 @@
                  excludepackagenames="info.pearlfish.internal.*, info.pearlfish.unstable.*"
                  classpathref="pearlfish.module.production.classpath"
                  doctitle="Pearlfish"
-                 windowtitle="Pearlfish"/>
+                 windowtitle="Pearlfish"
+                 failonerror="true"/>
     </target>
 
     <target name="test" depends="all">

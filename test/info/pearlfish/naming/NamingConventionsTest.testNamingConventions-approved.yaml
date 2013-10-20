@@ -6,3 +6,5 @@ nextToSource: {approvedFileName: example/info/pearlfish/naming/NamingConventions
   receivedFileName: example/info/pearlfish/naming/NamingConventionsTest.exampleTest-received.txt}
 singleDir: {approvedFileName: example/info.pearlfish.naming.NamingConventionsTest.exampleTest-approved.txt,
   receivedFileName: example/info.pearlfish.naming.NamingConventionsTest.exampleTest-received.txt}
+testClass: info.pearlfish.naming.NamingConventionsTest
+testMethod: exampleTest

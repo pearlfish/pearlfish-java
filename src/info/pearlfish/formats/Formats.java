@@ -17,7 +17,6 @@ import static info.pearlfish.FormatType.TEXT;
  * If you want a templated format that will fail when no template can be found, use those defined by the
  * {@link TemplateFormats} class.
  */
-@SuppressWarnings("UnusedDeclaration")
 public class Formats {
     /**
      * Formats values by calling their {@link Object#toString()} method and writes the results to a text file.

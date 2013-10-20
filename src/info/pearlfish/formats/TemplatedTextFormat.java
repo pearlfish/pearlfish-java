@@ -14,6 +14,9 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+/**
+ * A format that uses a <a href="http://mustache.github.io/">Mustache</a> template to convert an object to text.
+ */
 public class TemplatedTextFormat implements Format<Object> {
     private final Template template;
     private final TextFilter postTemplateFilter;

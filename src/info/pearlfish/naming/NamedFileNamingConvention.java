@@ -13,23 +13,17 @@ public class NamedFileNamingConvention implements FileNamingConvention, TestSpec
     private final String approvedPath;
     private final String receivedPath;
 
-    public NamedFileNamingConvention(String path) {
-        this(path, appendBeforeExtension(path, "-received"));
-    }
-
-    private static String appendBeforeExtension(String path, String suffix) {
-        String extension = Files.getFileExtension(path);
-        if (extension.isEmpty()) {
-            return path + suffix;
-        }
-        else {
-            return new File(new File(path).getParent(), Files.getNameWithoutExtension(path) + suffix + "." + extension).toString();
-        }
-    }
-
     public NamedFileNamingConvention(String approvedPath, String receivedPath) {
         this.approvedPath = approvedPath;
         this.receivedPath = receivedPath;
+    }
+
+    public static TestSpecific<FileNamingConvention> forApprovedFile(String path) {
+        return new NamedFileNamingConvention(path, appendBeforeExtension(path, "-received"));
+    }
+
+    public static TestSpecific<FileNamingConvention> forApprovedAndReceivedFiles(String approvedPath, String receivedPath) {
+        return new NamedFileNamingConvention(approvedPath, receivedPath);
     }
 
     @Override
@@ -54,5 +48,15 @@ public class NamedFileNamingConvention implements FileNamingConvention, TestSpec
     @Override
     public FileNamingConvention forTest(Class<?> testClass, String testName) {
         return this;
+    }
+
+    private static String appendBeforeExtension(String path, String suffix) {
+        String extension = Files.getFileExtension(path);
+        if (extension.isEmpty()) {
+            return path + suffix;
+        }
+        else {
+            return new File(new File(path).getParent(), Files.getNameWithoutExtension(path) + suffix + "." + extension).toString();
+        }
     }
 }

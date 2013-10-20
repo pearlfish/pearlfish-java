@@ -1,6 +1,7 @@
 package info.pearlfish.naming;
 
 import info.pearlfish.FileNamingConvention;
+import info.pearlfish.TestSpecific;
 import info.pearlfish.adaptor.junit.ApprovalRule;
 import info.pearlfish.internal.InternalApprovals;
 import org.junit.Rule;
@@ -11,30 +12,35 @@ import java.io.IOException;
 import static info.pearlfish.formats.Formats.MARKDOWN;
 
 public class NamingConventionsTest {
+    public static final String TEST_NAME = "exampleTest";
     @Rule
     public ApprovalRule<Object> approval = InternalApprovals.selfTestApprover(MARKDOWN);
 
     @Test
     public void testNamingConventions() throws IOException {
-        final Class<? extends NamingConventionsTest> testClass = getClass();
+        final Class<? extends NamingConventionsTest> theTestClass = getClass();
 
         approval.check(new Object() {
+            public String testClass = theTestClass.getName();
+            public String testMethod = TEST_NAME;
             public Object nextToSource = sample(
-                    NextToSourceNamingConvention.forDirectory("example").forTest(testClass, "exampleTest"), ".txt");
+                    NextToSourceNamingConvention.forDirectory("example"), ".txt");
             public Object singleDir = sample(
-                    SingleDirectoryNamingConvention.forDirectory("example").forTest(testClass, "exampleTest"), ".txt");
+                    SingleDirectoryNamingConvention.forDirectory("example"), ".txt");
             public Object fixedNameRoot = sample(
-                    new NamedFileNamingConvention("docs/example"), ".txt");
+                    NamedFileNamingConvention.forApprovedFile("docs/example"), ".txt");
             public Object fixedNameRoots = sample(
-                    new NamedFileNamingConvention("docs/approved-example", "docs/generated-example"), ".txt");
+                    NamedFileNamingConvention.forApprovedAndReceivedFiles("docs/approved-example", "docs/generated-example"), ".txt");
             public Object fixedNameWithExtension = sample(
-                    new NamedFileNamingConvention("docs/example.foo"), ".txt");
+                    NamedFileNamingConvention.forApprovedFile("docs/example.foo"), ".txt");
             public Object fixedNamesWithExtension = sample(
-                    new NamedFileNamingConvention("docs/approved-example.foo", "docs/generated-example.foo"), ".txt");
+                    NamedFileNamingConvention.forApprovedAndReceivedFiles("docs/approved-example.foo", "docs/generated-example.foo"), ".txt");
         });
     }
 
-    private static Object sample(final FileNamingConvention namingConvention, final String fileExtension) {
+    private Object sample(final TestSpecific<FileNamingConvention> tsNamingConvention, final String fileExtension) {
+        final FileNamingConvention namingConvention = tsNamingConvention.forTest(getClass(), TEST_NAME);
+
         return new Object() {
             public String approvedFileName = namingConvention.approvedFile(fileExtension).getPath();
             public String receivedFileName = namingConvention.receivedFile(fileExtension).getPath();
