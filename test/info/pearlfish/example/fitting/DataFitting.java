@@ -5,12 +5,11 @@ import java.util.List;
 import static info.pearlfish.example.fitting.DoubleFunctions.*;
 
 public class DataFitting {
-
     /**
      * @param points the points to fit a trend line to
      * @return a Polynomial of degree 1 (i.e. linear)
      */
-    public static Polynomial linearFit(List<Point> points) {
+    public static Polynomial fitLineTo(List<Point> points) {
         double n = points.size();
         double sumX = sum(points, Point.toX);
         double sumY = sum(points, Point.toY);
