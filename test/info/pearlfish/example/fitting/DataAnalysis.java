@@ -4,7 +4,7 @@ import java.util.List;
 
 import static info.pearlfish.example.fitting.DoubleFunctions.*;
 
-public class DataFitting {
+public class DataAnalysis {
     /**
      * @param points the points to fit a trend line to
      * @return a Polynomial of degree 1 (i.e. linear)
@@ -22,5 +22,9 @@ public class DataFitting {
         double b = (n*sumXY - sumX*sumY) / divisor;
 
         return new Polynomial(a,b);
+    }
+
+    public static double mean(List<Point> points, DoubleFunction<Point> f) {
+        return sum(points, f) / points.size();
     }
 }

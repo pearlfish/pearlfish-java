@@ -9,13 +9,9 @@ import java.util.List;
 
 import static info.pearlfish.formats.TemplateFormats.SVG;
 
-/**
- * Note: all these tests will pass because the results have been approved.  But what's interesting is *should* they
- * have been?  The visualisation makes it clear which results are valid and which are not.
- */
-public class DataFittingTest {
+public class DataAnalysisTest {
     @Rule
-    public ApprovalRule<Object> approval = new ApprovalRule<Object>("test", SVG.withTemplate("DataFittingTest.svg.template"));
+    public ApprovalRule<Object> approval = new ApprovalRule<Object>("test", SVG.withTemplate("DataAnalysisTest.svg.template"));
 
     @Test
     public void fitSetI() throws IOException {
@@ -39,7 +35,7 @@ public class DataFittingTest {
 
     private void testFitAgainst(final List<Point> points) throws IOException {
         // This is what we're testing...
-        final Polynomial trendLine = DataFitting.fitLineTo(points);
+        final Polynomial trendLine = DataAnalysis.fitLineTo(points);
 
         approval.check(new Object() {
             public Iterable<Point> data = points;
@@ -47,10 +43,16 @@ public class DataFittingTest {
             public int minY = 0;
             public double width = 20;
             public double height = 20;
+            public String meanX = toDP(2, DataAnalysis.mean(points, Point.toX));
+            public String meanY = toDP(2, DataAnalysis.mean(points, Point.toY));
             public Object trend = new Object() {
                 public Point p0 = trendLine.atX(minX);
                 public Point p1 = trendLine.atX(width);
             };
         });
+    }
+
+    private String toDP(int dps, double value) {
+        return String.format("%."+dps+"f", value);
     }
 }

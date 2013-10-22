@@ -9,6 +9,7 @@ public class DoubleFunctions {
         return total;
     }
 
+
     public static <T> double min(double initial, Iterable<T> values, DoubleFunction<T> fn) {
         double min = initial;
         for (T v : values) {

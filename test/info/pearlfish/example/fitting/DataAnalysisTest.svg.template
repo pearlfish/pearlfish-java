@@ -28,4 +28,9 @@
        style="opacity:0.75;fill:#ff0000;stroke:#ff0000;stroke-width:0.03;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M {{trend.p0.x}},{{trend.p0.y}} L {{trend.p1.x}},{{trend.p1.y}}" />
   </g>
+
+  <text x="40" y="80" style="font-size:64px;font-family:Sans-Serif">
+    <tspan x="40" y="80">Mean X</tspan> <tspan x="320">{{meanX}}</tspan>
+    <tspan x="40" y="160">Mean Y</tspan><tspan x="320">{{meanY}}</tspan>
+  </text>
 </svg>
