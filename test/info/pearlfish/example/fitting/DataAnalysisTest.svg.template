@@ -30,7 +30,9 @@
   </g>
 
   <text x="40" y="80" style="font-size:64px;font-family:Sans-Serif">
-    <tspan x="40" y="80">Mean X</tspan> <tspan x="320">{{meanX}}</tspan>
-    <tspan x="40" y="160">Mean Y</tspan><tspan x="320">{{meanY}}</tspan>
+    <tspan x="40" y="80">Mean X</tspan> <tspan x="360">{{meanX}}</tspan>
+    <tspan x="40" y="160">Var X</tspan><tspan x="360">{{varX}}</tspan>
+    <tspan x="40" y="240">Mean Y</tspan><tspan x="360">{{meanY}}</tspan>
+    <tspan x="40" y="320">Var Y</tspan><tspan x="360">{{varY}}</tspan>
   </text>
 </svg>

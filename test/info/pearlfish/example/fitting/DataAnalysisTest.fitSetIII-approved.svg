@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.1">
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1">
   <defs>
       <path id="datapoint" transform="scale(0.025)"
             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
@@ -40,7 +39,9 @@
   </g>
 
   <text x="40" y="80" style="font-size:64px;font-family:Sans-Serif">
-    <tspan x="40" y="80">Mean X</tspan> <tspan x="320">9.00</tspan>
-    <tspan x="40" y="160">Mean Y</tspan><tspan x="320">7.50</tspan>
+    <tspan x="40" y="80">Mean X</tspan> <tspan x="360">9.00</tspan>
+    <tspan x="40" y="160">Var X</tspan><tspan x="360">11.000</tspan>
+    <tspan x="40" y="240">Mean Y</tspan><tspan x="360">7.50</tspan>
+    <tspan x="40" y="320">Var Y</tspan><tspan x="360">4.123</tspan>
   </text>
 </svg>

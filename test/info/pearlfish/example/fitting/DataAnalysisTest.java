@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
+import static info.pearlfish.example.fitting.DoubleFunctions.map;
 import static info.pearlfish.formats.TemplateFormats.SVG;
 
 public class DataAnalysisTest {
@@ -43,8 +44,10 @@ public class DataAnalysisTest {
             public int minY = 0;
             public double width = 20;
             public double height = 20;
-            public String meanX = toDP(2, DataAnalysis.mean(points, Point.toX));
-            public String meanY = toDP(2, DataAnalysis.mean(points, Point.toY));
+            public String meanX = toDP(2, DataAnalysis.mean(map(Point.toX, points)));
+            public String meanY = toDP(2, DataAnalysis.mean(map(Point.toY, points)));
+            public String varX = toDP(3, DataAnalysis.sampleVariance(map(Point.toX, points)));
+            public String varY = toDP(3, DataAnalysis.sampleVariance(map(Point.toY, points)));
             public Object trend = new Object() {
                 public Point p0 = trendLine.atX(minX);
                 public Point p1 = trendLine.atX(width);

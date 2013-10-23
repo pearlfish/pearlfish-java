@@ -1,33 +1,23 @@
 package info.pearlfish.example.fitting;
 
+import java.util.Collection;
+
 public class DoubleFunctions {
-    public static <T> double sum(Iterable<T> values, DoubleFunction<T> fn) {
+    public static <T> double[] map(DoubleFunction<T> fn, Collection<T> values) {
+        double[] result = new double[values.size()];
+        int i = 0;
+        for (T value : values) {
+            result[i++] = fn.eval(value);
+        }
+        return result;
+    }
+
+    public static double sum(double[] vs) {
         double total = 0;
-        for (T v : values) {
-            total += fn.eval(v);
+        for (double v : vs) {
+            total += v;
         }
         return total;
-    }
-
-
-    public static <T> double min(double initial, Iterable<T> values, DoubleFunction<T> fn) {
-        double min = initial;
-        for (T v : values) {
-            min = Math.min(min, fn.eval(v));
-        }
-        return min;
-    }
-
-    public static <T> double max(double initial, Iterable<T> values, DoubleFunction<T> fn) {
-        double max = initial;
-        for (T v : values) {
-            max = Math.max(max, fn.eval(v));
-        }
-        return max;
-    }
-
-    public static <T> double range(double initial, Iterable<T> values, DoubleFunction<T> fn) {
-        return max(initial, values, fn) - min(initial, values, fn);
     }
 
     public static <T> DoubleFunction<T> mul(final DoubleFunction<T> f1, final DoubleFunction<T> f2) {
@@ -49,7 +39,15 @@ public class DoubleFunctions {
         };
     }
 
-    public static int roundUpToNearest(int n, double value) {
-        return n*(((int)(value+n-1))/n);
+    public static double sq(double x) {
+        return x*x;
+    }
+
+    public static double[] sq(double[] xs) {
+        double[] result = new double[xs.length];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = sq(xs[i]);
+        }
+        return result;
     }
 }

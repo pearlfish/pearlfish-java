@@ -11,10 +11,10 @@ public class DataAnalysis {
      */
     public static Polynomial fitLineTo(List<Point> points) {
         double n = points.size();
-        double sumX = sum(points, Point.toX);
-        double sumY = sum(points, Point.toY);
-        double sumXY = sum(points, mul(Point.toX, Point.toY));
-        double sumXX = sum(points, sq(Point.toX));
+        double sumX = sum(map(Point.toX, points));
+        double sumY = sum(map(Point.toY, points));
+        double sumXY = sum(map(mul(Point.toX, Point.toY), points));
+        double sumXX = sum(map(sq(Point.toX), points));
 
         double divisor = n*sumXX - sumX*sumX;
 
@@ -24,7 +24,18 @@ public class DataAnalysis {
         return new Polynomial(a,b);
     }
 
-    public static double mean(List<Point> points, DoubleFunction<Point> f) {
-        return sum(points, f) / points.size();
+    public static <T> double mean(double[] xs) {
+        return sum(xs) / xs.length;
+    }
+
+    public static <T> double sampleVariance(double[] xs) {
+        double mean = mean(xs);
+
+        double sumMeanDiffSq = 0;
+        for (double x : xs) {
+            sumMeanDiffSq += sq(x - mean);
+        }
+
+        return sumMeanDiffSq / (xs.length-1);
     }
 }
