@@ -78,7 +78,7 @@ Cd to the java/ directory and run `./build`.  JAR files will be created in the j
 A Short Example
 ---------------
 
-In this example will use Pearlfish and [JUnit](http://www.junit.org) to write tests for an 
+In this example will use Pearlfish and [JUnit](http://www.junit.org) to write a very simple test for an
 [RPN calculator](http://en.wikipedia.org/wiki/Reverse_Polish_notation). 
 
 We will start by doing approval testing and then generate Specification by Example documentation
@@ -117,7 +117,7 @@ To test the calculator with Pearlfish and JUnit:
 
     Pearlfish provides some convenience classes and factory functions in the `Results` class
     that combine inputs and outputs with an explanatory name and group related scenarios, but you don't
-    have to use them.  You can store use any class that can be introspected by
+    have to use them.  You can use any class that can be introspected by
     [JMustache](https://github.com/samskivert/jmustache).
 
     For this example we'll use the convenience functions in the Results class and therefore need only
