@@ -13,4 +13,3 @@ esac
 echo building version $VERSION
 
 ant -Dversion="$VERSION" "$@"
-

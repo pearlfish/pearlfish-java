@@ -170,7 +170,7 @@
     </javac>
     
     <copy todir="${pearlfish.output.dir}">
-      <fileset dir="${module.pearlfish.basedir}/src">
+      <fileset dir="/">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>

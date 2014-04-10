@@ -1,0 +1,4 @@
+mvn:com.google.guava:guava:jar|sources:16.0.1
+mvn:org.yaml:snakeyaml:jar|sources:1.13
+mvn:com.samskivert:jmustache:jar|sources:1.9
+mvn:junit:junit:jar|sources:4.11

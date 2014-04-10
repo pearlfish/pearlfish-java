@@ -4,3 +4,7 @@ out/
 *.bak
 *~
 *.class
+libs/main/
+libs/test/
+libs/build/
+libs/*.mk
