@@ -3,6 +3,9 @@ Pearlfish for Java
 
 Specification-by-Example crossed with Approval Testing.
 
+[ ![Download](https://api.bintray.com/packages/npryce/maven/pearlfish/images/download.png) ](https://bintray.com/npryce/maven/pearlfish/_latestVersion)
+
+
 Pearlfish may be useful for you if:
 
  * You can change production code very rapidly, so that a document-first Specification by Example process
